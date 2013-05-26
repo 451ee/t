@@ -1,6 +1,9 @@
 What is this?
 -------------
 
+Taken from https://github.com/anm/Node-Talker
+to start learning.
+
 It's a talker implemented in javascript, designed to run on Node.js.
 
 What's a talker?
