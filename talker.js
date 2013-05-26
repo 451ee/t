@@ -107,8 +107,13 @@ var modes = {
                 user.println(help);
                 return 1;
             }
+						
+						else {
+							var out = user.name + ': ' + input;
+							util.wall(out);								
+						}
 
-            user.println("? (h for help)");
+            //user.println("? (h for help)");
             return 1;
         }
     },
