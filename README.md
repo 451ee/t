@@ -18,7 +18,7 @@ This mockup can pretend to work with these commands:
 
 Try it out www.451.ee/t
 
-With very little HTML+CSS it's already usable on mobile + bigger screens.
+With very little HTML+CSS it's already usable on all screen sizes.
 
 
 FIRST VERSION
