@@ -11,9 +11,9 @@ CURRENT STATUS
 -------------
 
 This mockup can pretend to work with these commands:
-.w - who - who is in the chatroom
-.h - help - help
-.c - che cazzo - italian expression "che cazzo!"
++ .w - who - who is in the chatroom
++ .h - help - help
++ .c - che cazzo - italian expression "che cazzo!"
 
 Try it out www.451.ee/t
 
@@ -38,11 +38,11 @@ Together with just chatting also a possibility to send private messages as in
 
 WHY? 
 ----
--> I think the text based user interface deserves another go.
--> "Rooms" could be used for group chatting.
--> Skype/FB doesn't let you do your own emotcons.
--> I hooked up with two friends from a telnet talker I used to visit more then 10 years ago and it felt good to talk with them.
--> There are groups of former talker admins who know how to keep these communities.
++ I think the text based user interface deserves another go.
++  "Rooms" could be used for group chatting.
++ Skype/FB doesn't let you do your own emotcons.
++ I hooked up with two friends from a telnet talker I used to visit more then 10 years ago and it felt good to talk with them.
++ There are groups of former talker admins who know how to keep these communities.
 
 FURTHER READING:
 --------------
