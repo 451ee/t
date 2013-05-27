@@ -28,6 +28,10 @@ $(document).ready(function() {
 			$("#jetzt").before('<div class="message announce"><div id="time">'+jQuery.timeago(new Date())+'</div><p><strong>.w</strong> - who - kes on kohal<br><strong>.h</strong> - help - näita seda ekraani siin <br><strong>.e</strong> - tegevus - proovi näiteks ".e tantsib"<br></p></div>');
 			break;
 
+			case '.c':
+				$("#jetzt").before('<div class="message center"><div id="time">'+jQuery.timeago(new Date())+'</div><p id="name">User Name <img src="img/che.png" /></p></div>');
+			break;
+
 			case '':
 			return false;
 			break;
