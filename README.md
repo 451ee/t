@@ -32,8 +32,8 @@ Rooms / groupchat:
 Ability to create rooms. Private & public.
 
 Communication: 
-Together with just chatting also a possibility to send private messages as in
-.tell <user> <message>. Also .emote would be nice.
+.tell <user> <message> - send a private message.
+.emote would also be nice.
 
 
 WHY? 
