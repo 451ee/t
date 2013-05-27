@@ -2,7 +2,7 @@ WAS IST DAS?
 -------------
 
 An idea to combine:
-+ Telnet talker interface
++ command line (telnet talker) interface
 + Node.js
 + HTML5
 
