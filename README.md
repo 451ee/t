@@ -1,42 +1,50 @@
-What is this?
+WAS IST DAS?
 -------------
 
-Taken from https://github.com/anm/Node-Talker
-to start learning.
+An idea to combine:
++ Telnet talker interface
++ Node.js
++ HTML5
 
-It's a talker implemented in javascript, designed to run on Node.js.
 
-What's a talker?
-----------------
+CURRENT STATUS
+-------------
 
-A talker is a text based chat program, typically accessed with
-telnet. They usually try to provide a sort of virtual world in which
-people can talk, do things and move around. Think text based Second
-Life. They were most popular in the 1990s and had pretty much died out
-by 2000.
+This mockup can pretend to work with these commands:
+.w - who - who is in the chatroom
+.h - help - help
+.c - che cazzo - italian expression "che cazzo!"
 
-What state is this program in?
-------------------------------
+Try it out www.451.ee/t
 
-It's very minimal. There are no rooms, few commands and no facility to
-register user names. There is enough to chat.
+With very little HTML+CSS it's allready usable on mobile + bigger screens.
 
-More importantly, it's designed to be easily extensible.
 
-Why?
+FIRST VERSION
+-------------
+
+Ideas for first version:
+
+Users:
+Ability to log in and out. With local user + perhaps some log-in services.
+
+Rooms / groupchat:
+Ability to create rooms. Private & public.
+
+Communication: 
+Together with just chatting also a possibility to send private messages as in
+.tell <user> <message>. Also .emote would be nice.
+
+
+WHY? 
 ----
+-> I think the text based user interface deserves another go.
+-> "Rooms" could be used for group chatting.
+-> Skype/FB doesn't let you do your own emotcons.
+-> I hooked up with two friends from a telnet talker I used to visit more then 10 years ago and it felt good to talk with them.
+-> There are groups of former talker admins who know how to keep these communities.
 
-The core of a talker is an echo server. This is about the simplest
-network program you can write so it's a good way to learn a new
-platform like Node.js.
-
-Actually though, the real reason is nostalgia.
-
-How do I use it?
-----------------
-
-1. Install Node.js
-2. node talker.js
-3. telnet localhost 5555
-
-Have fun!
+FURTHER READING:
+--------------
+The closest thing to a Node.js talker I could find was this: 
+https://github.com/anm/Node-Talker
