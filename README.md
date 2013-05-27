@@ -6,7 +6,7 @@ An idea to combine:
 + Node.js
 + HTML5
 
-The code that you are seeing is just a mockup of the real thing.
+The code that you are seeing is a mockup of the idea.
 
 CURRENT STATUS
 -------------
