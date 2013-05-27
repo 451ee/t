@@ -28,23 +28,23 @@ In case we should build it then the first version ought to be very basic,
 but doing those basic things very good.
 
 Users:
-Ability to log in and out. 
-Twitter+FB+??? connect.
-Name, profile pic. 
-Perhaps some profile info, just text is fine.
++ Ability to log in and out. 
++ Twitter+FB+??? connect.
++ Name, profile pic. 
++ Perhaps some profile info, just text is fine.
 Administration+moderation are out of scope for the first version.
 
 Rooms:
-Room has a name (& perhaps a topic).
-Ability to create private & public rooms for everyone. 
-Public room can be accessed by everyone. 
-First creator of a private room can decide, which users can access the room.
++ Room has a name (& perhaps a topic).
++ Ability to create private & public rooms for everyone. 
++ Public room can be accessed by everyone. 
++ First creator of a private room can decide, which users can access the room.
 
 Communication: 
-3 basic ways for communication:
-Just chatting = everyone in the same room gets your messages.
-.t = .tell <user> <message> - send a private message.
-.e = .emote would also be nice.
++ 3 basic ways for communication:
+1) Just chatting = everyone in the same room gets your messages.
+2) .t = .tell <user> <message> - send a private message.
+3) .e = .emote would also be nice.
 
 WHY? 
 ----
