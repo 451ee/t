@@ -6,6 +6,7 @@ $(document).ready(function() {
 	$('#send').ajaxForm(function() { 
 	  var input = $('#input');
 		
+		/*
 		var emote = input.val().match(/.e/);
 		if (emote) { 
 			emote = input.val().substr(3);
@@ -14,6 +15,7 @@ $(document).ready(function() {
 			} 
 			input.val('');
 		}
+		*/
 		
 		switch(input.val()) {
 			case '.w':
@@ -25,7 +27,7 @@ $(document).ready(function() {
 			break;
 
 			case '.h':
-			$("#jetzt").before('<div class="message announce"><div id="time">'+jQuery.timeago(new Date())+'</div><p><strong>.w</strong> - who - kes on kohal<br><strong>.h</strong> - help - näita seda ekraani siin <br><strong>.e</strong> - tegevus - proovi näiteks ".e tantsib"<br></p></div>');
+			$("#jetzt").before('<div class="message announce"><div id="time">'+jQuery.timeago(new Date())+'</div><p><strong>.w</strong> - who - kes on kohal<br><strong>.h</strong> - help - näita seda ekraani siin <br><!--<strong>.e</strong> - tegevus - proovi näiteks ".e tantsib"<br></p></div>-->');
 			break;
 
 			case '.c':
