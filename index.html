@@ -17,7 +17,14 @@
 
   <body>
       <div id="window">
-      	<div class="message announce">
+      	<div class="message" id="message1">
+      	Connected to 451.ee/t<br>
+      	Username:<br>
+          <form id="login">
+            <input type="text" id="username" value="" autocomplete="off" style="border: 1px solid #999;" />
+          </form>
+        </div>
+      	<div class="message announce hidden">
         	<div id="time">7:38</div>
           <p><strong>Tere tulemast!</strong><br>
           <strong>.w</strong> - who - kes on kohal<br>
@@ -45,16 +52,16 @@
           <p>Hei kas täna on kohtumine kell 2</p>
           <p>esitleksin idendi ideed, hetkel veel toores, kuid suuna idee saab kätte</p>
         </div>-->
-      	<div class="message">
-        	<img src="img/st.jpg" id="avatar" />
+      	<div class="message hidden">
+        	<img src="img/be.png" id="avatar" />
         	<div id="time">7:38</div>
-        	<p id="name">Sven Tiruson</p>
+        	<p id="name">Bender</p>
           <p>ma täna jah koosolekust osa ei võta, tegime siin lets do it worldi raames täna linna korda ja mul sõi kohalik sularaha automaat raha arvelt ja raha ei andnud, pean neid asju siin nats sebima, aga te proovige jah andmeid mulle tekitada ja ärge liiga tehniliselt mõelge</p>
         </div>
-      	<div class="message" id="jetzt">
+      	<div class="message hidden" id="jetzt">
         	<img src="img/ma.jpg" id="avatar" />
           <form id="send">
-            <input type="text" id="input" autocomplete="off" name="input" />
+            <input type="text" id="input" autocomplete="off" />
           </form>
         </div>
       </div>

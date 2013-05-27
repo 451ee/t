@@ -18,6 +18,10 @@
 	background: #eeeeee; 
 }
 
+.hidden {
+	display: none;
+}
+
 .center {
 	text-align: center;
 }
@@ -48,7 +52,7 @@ div.message>p {
 	line-height:1.2;
 }
 
-#input {
+#input, #username {
 	width: 100%;
 	height: 30px;
 	max-width: 490px;
