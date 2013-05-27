@@ -40,9 +40,7 @@ WHY?
 ----
 + I think the text based user interface deserves another go.
 + "Rooms" could be used for group chatting.
-+ Skype/FB doesn't let you do your own emoticons.
 + I started talking with two friends from a telnet talker I used to visit more than 10 years ago and it felt good to talk with them.
-+ There are groups of former talker admins who know how to keep these online communities.
 
 FURTHER READING:
 --------------
