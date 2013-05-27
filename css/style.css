@@ -14,13 +14,22 @@
 	margin-left: 40px;
 }
 
-#name {
+.announce {
+	background: #eeeeee; 
+}
+
+.center {
+	text-align: center;
+}
+
+#name, strong {
 	font-weight: bold;
 	margin-bottom: 0;
 }
 
 #time {
 	float: right;
+	color: #999;
 }
 
 #avatar {
