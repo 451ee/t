@@ -42,9 +42,9 @@ Rooms:
 
 Communication: 
 + 3 basic ways for communication:
-1) Just chatting = everyone in the same room gets your messages.
-2) .t = .tell <user> <message> - send a private message.
-3) .e = .emote would also be nice.
++ Just chatting = everyone in the same room gets your messages.
++ .t = .tell <user> <message> - send a private message.
++ .e = .emote would also be nice.
 
 WHY? 
 ----
