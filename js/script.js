@@ -1,7 +1,14 @@
 // JavaScript Document
 
 $(document).ready(function() {
-
+	
+	//what time is it?
+	var d = new Date();
+	var n = d.getHours();
+	var m = d.getMinutes();
+	var time = n+':'+m;
+	
+	// hold focus on the text input, unless it's the log in screen.
 	if ($("#username").is(":visible")) {
 		$("#username").focus();			
 	}
@@ -9,8 +16,8 @@ $(document).ready(function() {
 		$("#input").focus();			
 	}
 	
+	// special stuff for log in screen.
 	$('#login').ajaxForm(function() { 
-
 		var username = $('#username');
 		username = username.val();
 		name = String(username);
@@ -20,25 +27,24 @@ $(document).ready(function() {
 			$("#input").focus();	
 			$('#message1').hide();
 		}
-		//console.log(username.val());
-
 	}); 
 
+	// do stuff when people send text
 	$('#send').ajaxForm(function() { 
 	  
 		var input = $('#input');
 				
 		switch(input.val()) {
 			case '.w':
-			$("#jetzt").before('<div class="message announce"><div id="time">'+jQuery.timeago(new Date())+'</div><p id="name">Online users:</p><p>Vassili Koslakov, Silver Meikar, Marko Ausma, Sven Tiruson, Martin Sookael, Bender, '+name+'</p></div>');
+			$("#jetzt").before('<div class="message announce"><div id="time">'+time+'</div><p id="name">Online users:</p><p>Vassili Koslakov, Silver Meikar, Marko Ausma, Sven Tiruson, Martin Sookael, Bender, '+name+'</p></div>');
 			break;
 			
 			case '.h':
-			$("#jetzt").before('<div class="message announce"><div id="time">'+jQuery.timeago(new Date())+'</div><p><strong>.w</strong> - who - who is here<br><strong>.h</strong> - help - show this helpscreen here<br><strong>.c</strong> - che cazzo - curse in Italian <br>');
+			$("#jetzt").before('<div class="message announce"><div id="time">'+time+'</div><p><strong>.w</strong> - who - who is here<br><strong>.h</strong> - help - show this helpscreen here<br><strong>.c</strong> - che cazzo - curse in Italian <br>');
 			break;
 
 			case '.c':
-				$("#jetzt").before('<div class="message center"><div id="time">'+jQuery.timeago(new Date())+'</div><p id="name">'+name+' <img src="img/che.png" /></p></div>');
+				$("#jetzt").before('<div class="message center"><div id="time">'+time+'</div><p id="name">'+name+' <img src="img/che.png" /></p></div>');
 			break;
 
 			case '':
@@ -46,8 +52,8 @@ $(document).ready(function() {
 			break;
 			
 			default: 
-			$("#jetzt").before('<div class="message"><img src="img/ma.jpg" id="avatar" /><div id="time">'+jQuery.timeago(new Date())+'</div><p id="name">'+name+'</p><p>'+input.val()+'</p></div>');
-			if(Math.floor((Math.random()*3)+1) == 3) $("#jetzt").before('<div class="message"><img src="img/be.png" id="avatar" /><div id="time">'+jQuery.timeago(new Date())+'</div><p id="name">Bender</p><p>Ahaaa.. Interesting</p></div>');
+			$("#jetzt").before('<div class="message"><img src="img/ma.jpg" id="avatar" /><div id="time">'+time+'</div><p id="name">'+name+'</p><p>'+input.val()+'</p></div>');
+			if(Math.floor((Math.random()*3)+1) == 3) $("#jetzt").before('<div class="message"><img src="img/be.png" id="avatar" /><div id="time">'+time+'</div><p id="name">Bender</p><p>Ahaaa.. Interesting</p></div>');
 			break;
 		}
 		
