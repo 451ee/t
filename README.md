@@ -32,6 +32,7 @@ Users:
 + Twitter+FB+??? connect.
 + Name, profile pic. 
 + Perhaps some profile info, just text is fine.
++ Users can change names of other users for their view.
 Administration+moderation are out of scope for the first version.
 
 Rooms:
@@ -45,6 +46,7 @@ Communication:
 + Just chatting = everyone in the same room gets your messages.
 + .t = .tell <user> <message> - send a private message.
 + .e = .emote would also be nice.
++ Hubot http://hubot.github.com
 
 WHY? 
 ----
