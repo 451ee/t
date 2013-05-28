@@ -18,8 +18,8 @@ This mockup can pretend to work with these commands:
 
 Try it out www.451.ee/t
 
-With very little HTML+CSS it's already usable on all screen sizes.
-
+Usable on all screen sizes.
+Little HTML+CSS.
 
 FIRST VERSION
 -------------
@@ -37,9 +37,9 @@ Administration+moderation are out of scope for the first version.
 
 Rooms:
 + Room has a name (& perhaps a topic).
-+ Ability to create private & public rooms for everyone. 
++ Every user can create public rooms.
 + Public room can be accessed by everyone. 
-+ First creator of a private room can decide, which users can access the room.
++ Every user can create private rooms for only these people they allow.
 
 Communication: 
 + 3 basic ways for communication:
