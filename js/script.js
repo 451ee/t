@@ -36,7 +36,7 @@ $(document).ready(function() {
 				
 		switch(input.val()) {
 			case '.w':
-			$("#jetzt").before('<div class="message announce"><div id="time">'+time+'</div><p id="name">Online users:</p><p>Vassili Koslakov, Silver Meikar, Marko Ausma, Sven Tiruson, Martin Sookael, Bender, '+name+'</p></div>');
+			$("#jetzt").before('<div class="message announce"><div id="time">'+time+'</div><p id="name">Online users:</p><p>Vassili Koslakov, Silver Meikar, Marko Ausma, Sven Tiirusson, Martin Sookael, Bender, '+name+'</p></div>');
 			break;
 			
 			case '.h':
