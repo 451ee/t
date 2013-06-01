@@ -24,7 +24,11 @@ Little HTML+CSS.
 UPDATES
 --------
 
-1st of June 2013 - added express. Node.js now used to display statical page. It's something :).
+1st of June 2013 
+added express. 
+Node.js now used to display statical page. It's something :).
+Old mockup still there in in public/mockup.html
+
 
 FIRST VERSION
 -------------
