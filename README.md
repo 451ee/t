@@ -21,6 +21,11 @@ Try it out www.451.ee/t
 Usable on all screen sizes.
 Little HTML+CSS.
 
+UPDATES
+--------
+
+1st of June 2013 - added express. Node.js now used to display statical page. It's something :).
+
 FIRST VERSION
 -------------
 
