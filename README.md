@@ -26,7 +26,7 @@ UPDATES
 
 1st of June 2013 
 added express. 
-Node.js now used to display statical page. It's something :).
+<a href="http://jsx.ms/wp-content/uploads/2013/01/its-something.jpg">Node.js now used to display statical page.</a>
 Old mockup still there in in public/mockup.html
 
 
