@@ -53,8 +53,13 @@ $(document).ready(function() {
 			
 			default: 
 			$("#jetzt").before('<div class="message"><img src="images/ma.jpg" id="avatar" /><div id="time">'+time+'</div><p id="name">'+name+'</p><p>'+input.val()+'</p></div>');
-			if(Math.floor((Math.random()*3)+1) == 3) $("#jetzt").before('<div class="message"><img src="images/be.png" id="avatar" /><div id="time">'+time+'</div><p id="name">Bender</p><p>Ahaaa.. Interesting</p></div>');
+			
+			if(Math.floor((Math.random()*3)+1) == 3) $("#jetzt").before('<div class="message"><img src="images/be.png" id="avatar" /><div id="time">'+time+'</div><p id="name">Bender</p><p>Ahaaa.. Interesting.</p></div>');
+
+			if(Math.floor((Math.random()*10)+1) == 3) $("#jetzt").before('<div class="message"><img src="images/be.png" id="avatar" /><div id="time">'+time+'</div><p id="name">Bender</p><p>Sieht nix, hört nix, sagt nix.</p></div>');
 			break;
+			
+			
 		}
 		
 		input.val('');
