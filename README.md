@@ -24,6 +24,8 @@ Little HTML+CSS.
 UPDATES
 --------
 
+13th of Sept 2013 added socket.io support. Should now be multiplayer.
+
 1st of June 2013 
 added express. 
 <a href="http://jsx.ms/wp-content/uploads/2013/01/its-something.jpg">Node.js now used to display statical page.</a>
