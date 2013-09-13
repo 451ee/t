@@ -65,7 +65,7 @@ $(document).ready(function() {
 			/*$("#jetzt").before('<div class="message"><img src="images/ms.jpg" id="avatar" /><div id="time">'+time+'</div><p id="name">'+name+'</p><p>'+input.val()+' <a href="#" class="tag">#Trappeto</a></p></div>'); */
             socket.on('news', function (data) {
                 console.log(data);
-                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name">'+data.name+'</p><p>'+data.message+' <a href="#" class="tag">#Trappeto</a></p></div>');
+                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name">'+data.name+'</p><p>'+data.message+' <!--<a href="#" class="tag">#Trappeto</a></p></div>-->');
     
             });
             
