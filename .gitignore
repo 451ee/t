@@ -2,5 +2,5 @@
 node_modules
 
 # Don't get the conf files:
-
+conf.js
 
