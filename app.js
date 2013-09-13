@@ -42,7 +42,16 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-app.get('/', routes.index);
+//app.get('/', routes.index);
+
+
+app.get('/', function(req, res){
+    res.render('index.jade', { 
+        conf: conf.general
+    });
+});
+
+
 app.get('/users', user.list);
 
 server.listen(app.get('port'), function(){
