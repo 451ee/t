@@ -8,14 +8,15 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
+  , conf = require('./conf')
   , app = express();
 
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
 // all environments
-app.set('port', process.env.PORT || 3001);
-//app.set('port', 3001);
+//app.set('port', process.env.PORT || 3001);
+app.set('port', conf.general.port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
