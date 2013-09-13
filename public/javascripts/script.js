@@ -1,25 +1,5 @@
 // JavaScript Document
 
-//console.log(socket);
-//socket;
-/*var socket = io.connect('http://127.0.0.1:3001');
-
-socket.on('news', function (data) {
-    //console.log(data.hello);
-    $(document).ready(function() {
-        $("#main").html(data.hello);
-    });
-});
-$(document).ready(function() {
-    $('#send').ajaxForm(function() { 
-        var input = $('#input');
-        socket.emit('news', { text: input.val() });
-        input.val('');
-        //socket.emit('second', { my: 'Tere Maailm' });
-    }); 
-}); */
-
-
 $(document).ready(function() { 
 	
 	//what time is it?
@@ -83,7 +63,20 @@ $(document).ready(function() {
 			
 			default: 
 			/*$("#jetzt").before('<div class="message"><img src="images/ms.jpg" id="avatar" /><div id="time">'+time+'</div><p id="name">'+name+'</p><p>'+input.val()+' <a href="#" class="tag">#Trappeto</a></p></div>'); */
-			
+            socket.on('news', function (data) {
+                console.log(data);
+                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name">'+data.name+'</p><p>'+data.message+' <a href="#" class="tag">#Trappeto</a></p></div>');
+    
+            });
+            
+            $('#send').ajaxForm(function() { // conflicts with 75
+                var input = $('#input');
+                socket.emit('news', { text: input.val(), name: name, time: getTime() });
+                input.val('');
+                //socket.emit('second', { my: 'Tere Maailm' });
+            }); 
+
+                
 			if(Math.floor((Math.random()*3)+1) == 3) $("#jetzt").before('<div class="message"><img src="images/be.png" id="avatar" /><div id="time">'+time+'</div><p id="name">Bender</p><p>Ahaaa.. Interesting.  <a href="#" class="tag">#Trappeto</a></p></div>');
 
 			if(Math.floor((Math.random()*10)+1) == 3) $("#jetzt").before('<div class="message"><img src="images/be.png" id="avatar" /><div id="time">'+time+'</div><p id="name">Bender</p><p>Sieht nix, hört nix, sagt nix. <a href="#" class="tag">#Trappeto</a></p></div>');
@@ -92,24 +85,7 @@ $(document).ready(function() {
 		}
 		
 		input.val('');
-		$(window).scrollTop($(document).height());
-
-        // Socket
-        var socket = io.connect('http://127.0.0.1:3001');
-        
-        socket.on('news', function (data) {
-            console.log(data);
-            $("#jetzt").before('<div class="message"><img src="images/ms.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name">'+data.name+'</p><p>'+data.message+' <a href="#" class="tag">#Trappeto</a></p></div>');
-
-        });
-        
-        $('#send').ajaxForm(function() { // conflicts with 75
-            var input = $('#input');
-            socket.emit('news', { text: input.val(), name: name, time: getTime() });
-            input.val('');
-            //socket.emit('second', { my: 'Tere Maailm' });
-        }); 
-        
+		$(window).scrollTop($(document).height());        
         
 	}); 
 });
