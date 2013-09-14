@@ -35,7 +35,7 @@ if ('development' == app.get('env')) {
 // socket
 
 io.sockets.on('connection', function (socket) {
-  socket.on('news', function (data) {
+  socket.on('news', function (data) { 
       socket.emit('news', { message: data.text, name: data.name, time: data.time });
       socket.broadcast.emit('news', { message: data.text, name: data.name, time: data.time });
      console.log(data);
