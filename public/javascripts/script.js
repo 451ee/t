@@ -51,11 +51,11 @@ $(document).ready(function() {
 
         switch(data.message) {
             case 'c':
-				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name">'+data. name+' <img src="images/che.png" /></p></div>');
+				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data. name+'</strong> <img src="images/che.png" /></p></div>');
             break;
                 
             default: 
-                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name">'+data.name+'</p><p>'+data.message+' <a href="#" class="tag">#Kesklinn</a></p></div>');
+                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p>'+data.message+' <a href="#" class="tag">#Kesklinn</a></p></div>');
             document.getElementById('ping1').play();
             break;
         }
