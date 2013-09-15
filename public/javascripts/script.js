@@ -62,7 +62,7 @@ $(document).ready(function() {
                 //console.log(input.val());
             break;
         }
-
+ 
         input.val(''); // clear the text input. Or should it be - reset form?
         //$(window).scrollTop($(document).height()); // autoscroll to bottom of page        
         
@@ -77,7 +77,7 @@ $(document).ready(function() {
         
         switch(data.message) {
             case 'c':
-				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name">'+data.name+' <img src="images/che.png" /></p></div>');
+				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name">'+data. name+' <img src="images/che.png" /></p></div>');
             break;
                 
             default: 
