@@ -27,17 +27,9 @@ Try it out http://meie.tallinn.ee
 TODO
 --------
 
-Play sound on new messge
-Automatic URL creation
-long words/URLs go over the divs borders
-Database support
-Mobile view is out of place
-Login + FBconnnect + profile pic
-Profile - profile info + ability to change your username + ability to change username for the other user
-Rooms
-Ability to create rooms by users
-Public rooms, private rooms
-Hubot
+Current tasklist is here:
+https://app.asana.com/-/share?s=7719476021228-pxHKCllHXsiHL17Dbn8QlqCeedhtgmC3TW8kWlUPShS-1888846333398
+
 
 UPDATES
 --------
