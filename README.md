@@ -6,23 +6,44 @@ An idea to combine:
 + Node.js
 + HTML5
 
-The code that you are seeing is a mockup of the idea.
+The big idea is to work on a interface for webapp where all the commands are insterted via keyboard.
+This enables fast creation of functionality without being stuck in the design and user implementation phase.
 
 CURRENT STATUS
 -------------
 
-This mockup can pretend to work with these commands:
-+ .w - who - who is in the chatroom
-+ .h - help - help
-+ .c - che cazzo - curse in italian
+Uses:
+Express, Jade and Stylus - as the base back- and frontend.
+socket.io - for connecting people.
 
-Try it out www.451.ee/t
+No database is currently attached.
+I kind of like the idea of a talker without a database + it makes development faster.
 
 Usable on all screen sizes.
 Little HTML+CSS.
 
+Try it out http://meie.tallinn.ee
+
+TODO
+--------
+
+Play sound on new messge
+Automatic URL creation
+long words/URLs go over the divs borders
+Database support
+Mobile view is out of place
+Login + FBconnnect + profile pic
+Profile - profile info + ability to change your username + ability to change username for the other user
+Rooms
+Ability to create rooms by users
+Public rooms, private rooms
+Hubot
+
 UPDATES
 --------
+
+14th of Sept 2013 added support for listing online users and printing who is connected and who not. Also first (hidden) support for users.
+Users and rooms are from this tutorial - http://psitsmike.com/2011/10/node-js-and-socket-io-multiroom-chat-tutorial/
 
 13th of Sept 2013 added socket.io support. Should now be multiplayer.
 
@@ -32,8 +53,18 @@ added express.
 Old mockup still there in in public/mockup.html
 
 
+WHY? 
+----
++ I think the text based user interface deserves another go.
++ "Rooms" could be used for group chatting.
++ I started talking with two friends from a telnet talker I used to visit more than 10 years ago and it felt good to talk with them.
+
+
 FIRST VERSION
 -------------
+/*
+THIS INFO IS OUTDATED - I'M JUST KEEPING IT HERE TO REMIND ME OF THE BEGEINNING
+*/
 
 In case we should build it then the first version ought to be very basic, 
 but doing those basic things very good.
@@ -59,13 +90,3 @@ Communication:
 + .e = .emote would also be nice.
 + Hubot http://hubot.github.com
 
-WHY? 
-----
-+ I think the text based user interface deserves another go.
-+ "Rooms" could be used for group chatting.
-+ I started talking with two friends from a telnet talker I used to visit more than 10 years ago and it felt good to talk with them.
-
-FURTHER READING:
---------------
-The closest thing to a Node.js talker I could find was this: 
-https://github.com/anm/Node-Talker
