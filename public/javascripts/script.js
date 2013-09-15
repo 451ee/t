@@ -35,7 +35,8 @@ $(document).ready(function() {
 
 			case 'w': // print online users
                 socket.emit('getUsers');
-			break;
+                switchRoom('#Kristiine');
+                break;
                 
             default: // regular text entry - pass this on
                 socket.emit('news', { text: input.val(), name: name, time: getTime() });
@@ -55,7 +56,7 @@ $(document).ready(function() {
             break;
                 
             default: 
-                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p>'+data.message+' <a href="#" class="tag">#Kesklinn</a></p></div>');
+                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p>'+data.message+'</p></div>');
             document.getElementById('ping1').play();
             break;
         }
@@ -89,11 +90,14 @@ $(document).ready(function() {
 			$("#input").focus();	
 			$('#message1').hide();
 		}
-
         socket.emit('adduser', { username: username, time: getTime() });
-        
     });
 
+	function switchRoom(room){ 
+		//socket.emit('switchRoom', room);
+        socket.emit('switchRoom', { newroom: room, time: getTime() });
+	}
+    
 	// listener, whenever the server emits 'updaterooms', this updates the room the client is in
 	socket.on('updaterooms', function(rooms, current_room) {
 		$('#rooms').empty();
@@ -102,12 +106,12 @@ $(document).ready(function() {
 				$('#rooms').append('<div>' + value + '</div>');
 			}
 			else {
-				$('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
+				$('#rooms').append('<div><a href="#" onclick="switchRoom(\''+key+'\')">' + value + '</a></div>');
 			}
 		});
 	});
 
-
+    
     /* socket.on('updateusers', function(data) {
         $('#users').empty();
         $.each(data, function(key, value) {
