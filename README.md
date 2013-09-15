@@ -20,10 +20,10 @@ INSTALLATION
 0. Assuming you have node and npm installed
 1. download the package 
 or
-1. git clone git@github.com:451ee/t.git .
-2. sudo npm install
-2.5 I tend to get "node-gyp rebuild 2> builderror.log" but nevertheless the stuff seams to work
-3. go to yourdomain:3001
+2. git clone git@github.com:451ee/t.git .
+3. sudo npm install
+4 I tend to get "node-gyp rebuild 2> builderror.log" but nevertheless the stuff seams to work
+5. go to yourdomain:3001
 
 SETUP
 -------------
