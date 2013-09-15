@@ -18,19 +18,6 @@ $(document).ready(function() {
 		$("#input").focus();			
 	}
 	
-	// special stuff for log in screen.
-/*	$('#login').ajaxForm(function() { 
-		var username = $('#username');
-		username = username.val();
-		name = String(username);
-				
-		if (username) { 
-			$('.message').show();
-			$("#input").focus();	
-			$('#message1').hide();
-		}
-	}); */
-
     // Catches user submitted content from form
     $('#send').on('submit', function(e) { 
        
@@ -52,12 +39,10 @@ $(document).ready(function() {
                 
             default: // regular text entry - pass this on
                 socket.emit('news', { text: input.val(), name: name, time: getTime() });
-                //console.log(input.val());
             break;
         }
  
         input.val(''); // clear the text input. Or should it be - reset form?
-        //$(window).scrollTop($(document).height()); // autoscroll to bottom of page        
         
     });
 
@@ -80,7 +65,6 @@ $(document).ready(function() {
 
     // catches getusers response from the server
     socket.on('getUsers', function (data) { 
-        //console.log(data);
         var allUsers = []; 
         $.each(data, function(key, value) {
             if(allUsers != 'undefined'){
@@ -106,7 +90,6 @@ $(document).ready(function() {
 			$('#message1').hide();
 		}
 
-        //socket.emit('adduser', username);
         socket.emit('adduser', { username: username, time: getTime() });
         
     });
