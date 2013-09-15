@@ -24,6 +24,14 @@ Little HTML+CSS.
 
 Try it out http://meie.tallinn.ee
 
+
+PRIORITIES
+--------
+
+* lightweight on traffic
+* lightweight
+* works on every screen
+
 TODO
 --------
 
