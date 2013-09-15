@@ -11,24 +11,6 @@ html
 		script(type='text/javascript', src='/socket.io/socket.io.js')
 		script.
 			var socket = io.connect('#{conf.url}');
-			
-			/*socket.on('news', function (data) {
-				//console.log(data.hello);
-				$(document).ready(function() {
-					//$("#main").html(data.hello);
-					$("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">10:10</div><p id="name">'+name+'</p><p>'+data.hello+' <a href="#" class="tag">#Trappeto</a></p></div>');
-
-				});
-			});
-
-			$(document).ready(function() {
-				$('#send').ajaxForm(function() { 
-				var input = $('#input');
-				socket.emit('news', { text: input.val() });
-				input.val('');
-				//socket.emit('second', { my: 'Tere Maailm' });
-				}); 
-			});*/
 		meta(viewport='width=device-width')
 		meta(id='extViewportMeta', viewport='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no')
 		meta(apple-mobile-web-app-capable='yes')
