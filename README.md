@@ -34,12 +34,15 @@ https://app.asana.com/-/share?s=7719476021228-pxHKCllHXsiHL17Dbn8QlqCeedhtgmC3TW
 UPDATES
 --------
 
-14th of Sept 2013 added support for listing online users and printing who is connected and who not. Also first (hidden) support for users.
+14th of Sept 2013 
+added support for listing online users and printing who is connected and who not. Also first (hidden) support for users.
 Users and rooms are from this tutorial - http://psitsmike.com/2011/10/node-js-and-socket-io-multiroom-chat-tutorial/
 
-Also first very primitive soundnotifications.
+Also first very primitive soundnotifications. I found this tutorial useful here:
+http://www.storiesinflight.com/html5/audio.html
 
-13th of Sept 2013 added socket.io support. Should now be multiplayer.
+13th of Sept 2013 
+added socket.io support. Should now be multiplayer.
 
 1st of June 2013 
 added express. 
