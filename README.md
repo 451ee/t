@@ -23,7 +23,7 @@ or
 1. git clone git@github.com:451ee/t.git .
 2. sudo npm install
 2.5 I tend to get "node-gyp rebuild 2> builderror.log" but nevertheless the stuff seams to work
-3. go to yourdomain: 3001
+3. go to yourdomain:3001
 
 SETUP
 -------------
