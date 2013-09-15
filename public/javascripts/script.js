@@ -56,14 +56,15 @@ $(document).ready(function() {
                 
             default: 
                 $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name">'+data.name+'</p><p>'+data.message+' <a href="#" class="tag">#Kesklinn</a></p></div>');
+            document.getElementById('ping1').play();
             break;
         }
 
         $(window).scrollTop($(document).height()); // autoscroll to bottom of page        
 
     });
-
-    // catches getusers response from the server
+    
+    // catches getUsers response from the server
     socket.on('getUsers', function (data) { 
         var allUsers = []; 
         $.each(data, function(key, value) {
@@ -72,7 +73,6 @@ $(document).ready(function() {
             }
         });
         $("#jetzt").before('<div class="message announce"><div id="time">'+getTime()+'</div><p id="name">Online users:</p>'+allUsers+'<p></p></div>');
-        
     });
 
     

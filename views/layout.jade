@@ -9,6 +9,7 @@ html
 		script(type='text/javascript', src='/javascripts/script.js')
 		script(type='text/javascript', src='/javascripts/jquery.form.js')
 		script(type='text/javascript', src='/socket.io/socket.io.js')
+		audio#ping1(preload='auto', src='/sounds/ping.mp3')        
 		script.
 			var socket = io.connect('#{conf.url}');
 		meta(viewport='width=device-width')
