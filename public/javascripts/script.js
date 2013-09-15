@@ -112,12 +112,4 @@ $(document).ready(function() {
 	});
 
     
-    /* socket.on('updateusers', function(data) {
-        $('#users').empty();
-        $.each(data, function(key, value) {
-          $('#users').append('<div>' + key + '</div>');
-        });
-    }); */
-
-    
 });

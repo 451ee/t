@@ -15,10 +15,8 @@ var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
 var date = new Date();
-//var current_hour = date.getHours();
 
 // all environments
-//app.set('port', process.env.PORT || 3001);
 app.set('port', conf.general.port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
