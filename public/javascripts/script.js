@@ -1,15 +1,7 @@
 // JavaScript Document
 
 $(document).ready(function() { 
-	    
-    function getTime() {
-        var d = new Date();
-        var n = d.getHours();
-        var m = d.getMinutes();
-        var time = n+':'+m;
-        return time;
-    }
-    	
+	        
 	// hold focus on the text input, unless it's the log in screen.
 	if ($("#username").is(":visible")) {
 		$("#username").focus();			
@@ -35,8 +27,11 @@ $(document).ready(function() {
 
 			case 'w': // print online users
                 socket.emit('getUsers');
+            break;
+
+            case 'm': // move to another room
                 switchRoom('#Kristiine');
-                break;
+            break;
                 
             default: // regular text entry - pass this on
                 socket.emit('news', { text: input.val(), name: name, time: getTime() });
@@ -57,13 +52,18 @@ $(document).ready(function() {
                 
             default: 
                 $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p>'+data.message+'</p></div>');
-            document.getElementById('ping1').play();
+                document.getElementById('ping1').play();
             break;
         }
 
         $(window).scrollTop($(document).height()); // autoscroll to bottom of page        
 
     });
+
+
+    //$(".allRooms").click(function(){socket.emit('switchRoom', { newroom: event.target.id, time: getTime() })});
+    //$(".allRooms").click(function(){console.log("tere");});
+    
     
     // catches getUsers response from the server
     socket.on('getUsers', function (data) { 
@@ -92,11 +92,6 @@ $(document).ready(function() {
 		}
         socket.emit('adduser', { username: username, time: getTime() });
     });
-
-	function switchRoom(room){ 
-		//socket.emit('switchRoom', room);
-        socket.emit('switchRoom', { newroom: room, time: getTime() });
-	}
     
 	// listener, whenever the server emits 'updaterooms', this updates the room the client is in
 	socket.on('updaterooms', function(rooms, current_room) {
@@ -106,10 +101,24 @@ $(document).ready(function() {
 				$('#rooms').append('<div>' + value + '</div>');
 			}
 			else {
-				$('#rooms').append('<div><a href="#" onclick="switchRoom(\''+key+'\')">' + value + '</a></div>');
+				//$('#rooms').append('<div><a href="#" class="allRooms" id="'+key+'">' + value + '</a></div>');
+                $('#rooms').append('<div><a href="#" class="allRooms" id="'+key+'" onclick="switchRoom(\''+key+'\'); return false;">' + value + '</a></div>');
+				//$('#rooms').append('<div><a href="#" onclick="console.log(getTime())">' + value + '</a></div>');
 			}
 		});
 	});
 
-    
 });
+
+function getTime() {
+    var d = new Date();
+    var n = d.getHours();
+    var m = d.getMinutes();
+    var time = n+':'+m;
+    return time;
+}
+
+function switchRoom(room){ 
+    //socket.emit('switchRoom', room);
+    socket.emit('switchRoom', { newroom: room, time: getTime() });
+}
