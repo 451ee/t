@@ -45,6 +45,8 @@ UPDATES
 14th of Sept 2013 added support for listing online users and printing who is connected and who not. Also first (hidden) support for users.
 Users and rooms are from this tutorial - http://psitsmike.com/2011/10/node-js-and-socket-io-multiroom-chat-tutorial/
 
+Also first very primitive soundnotifications.
+
 13th of Sept 2013 added socket.io support. Should now be multiplayer.
 
 1st of June 2013 
