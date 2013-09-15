@@ -14,6 +14,9 @@ var express = require('express')
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
+var date = new Date();
+//var current_hour = date.getHours();
+
 // all environments
 //app.set('port', process.env.PORT || 3001);
 app.set('port', conf.general.port);
@@ -52,12 +55,31 @@ io.sockets.on('connection', function (socket) {
         socket.room = '#Kesklinn'; // store the room name in the socket session for this client
         usernames[data.username] = data.username; // add the client's username to the global list
         socket.join('#Kesklinn'); // send client to room 1
-        socket.emit('news', { message: 'you are connected to <span class="tag">#Kesklinn</span>', name: 'Bender', time: data.time}); // echo to client they've connected
-        socket.broadcast.to('#Kesklinn').emit('news', { message: '<strong>'+data.username + '</strong> has now connected to <span class="tag">#Kesklinn</span>', name: 'Bender', time: data.time}); // echo to room 1 that a person has connected to their room
+        socket.emit('news', { message: 'you are in ', name: 'Server', time: data.time}); // echo to client they've connected
+        socket.broadcast.to('#Kesklinn').emit('news', { message: '<strong>'+data.username + '</strong> has now connected to ', name: 'Server', time: data.time}); // echo to room 1 that a person has connected to their room
         //socket.emit('updaterooms', rooms, '#Kesklinn');
+        socket.broadcast.to('#Kesklinn').emit('updateusers', usernames);
+        socket.emit('updateusers', usernames);
     });
+
+    socket.on('disconnect', function(){
+        // remove the username from global usernames list
+        delete usernames[socket.username];
+        // update list of users in chat, client-side
+        //socket.emit('updateusers', usernames);
+        // echo globally that this client has left
+        socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+        socket.broadcast.to('#Kesklinn').emit('news', { message: '<strong>'+socket.username + '</strong> has now disconnected', name: 'Server', time: date.getHours()+':'+date.getMinutes()}); // echo to room 1 that a person has disconnected
+        socket.leave(socket.room);
+    });
+
+    socket.on('getUsers', function(){
+        // update list of users in chat, client-side
+        socket.emit('getUsers', usernames);
+    });    
     
 });
+
 
 app.get('/', function(req, res){
     res.render('index.jade', { 

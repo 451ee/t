@@ -43,7 +43,11 @@ $(document).ready(function() {
             break;
 
             case 'h': // print help screen - does not require broadcasting
-                $("#jetzt").before('<div class="message announce"><p><!--<strong>w</strong> - who - who is here<br>--><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <br>');
+                $("#jetzt").before('<div class="message announce"><p><strong>w</strong> - who - who is here<br><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <br>');
+			break;
+
+			case 'w': // print online users
+                socket.emit('getUsers');
 			break;
                 
             default: // regular text entry - pass this on
@@ -66,12 +70,25 @@ $(document).ready(function() {
             break;
                 
             default: 
-                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name">'+data.name+'</p><p>'+data.message+' <!--<a href="#" class="tag">#Trappeto</a></p></div>-->');
+                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name">'+data.name+'</p><p>'+data.message+' <a href="#" class="tag">#Kesklinn</a></p></div>');
             break;
         }
 
         $(window).scrollTop($(document).height()); // autoscroll to bottom of page        
 
+    });
+
+    // catches getusers response from the server
+    socket.on('getUsers', function (data) { 
+        //console.log(data);
+        var allUsers = []; 
+        $.each(data, function(key, value) {
+            if(allUsers != 'undefined'){
+                allUsers = key + ', ' + allUsers;
+            }
+        });
+        $("#jetzt").before('<div class="message announce"><div id="time">'+getTime()+'</div><p id="name">Online users:</p>'+allUsers+'<p></p></div>');
+        
     });
 
     
@@ -93,7 +110,6 @@ $(document).ready(function() {
         socket.emit('adduser', { username: username, time: getTime() });
         
     });
-    
 
 	// listener, whenever the server emits 'updaterooms', this updates the room the client is in
 	socket.on('updaterooms', function(rooms, current_room) {
@@ -108,4 +124,13 @@ $(document).ready(function() {
 		});
 	});
 
+
+    /* socket.on('updateusers', function(data) {
+        $('#users').empty();
+        $.each(data, function(key, value) {
+          $('#users').append('<div>' + key + '</div>');
+        });
+    }); */
+
+    
 });
