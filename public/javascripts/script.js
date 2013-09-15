@@ -28,10 +28,6 @@ $(document).ready(function() {
 			case 'w': // print online users
                 socket.emit('getUsers');
             break;
-
-            case 'm': // move to another room
-                switchRoom('#Kristiine');
-            break;
                 
             default: // regular text entry - pass this on
                 socket.emit('news', { text: input.val(), name: name, time: getTime() });
@@ -59,11 +55,6 @@ $(document).ready(function() {
         $(window).scrollTop($(document).height()); // autoscroll to bottom of page        
 
     });
-
-
-    //$(".allRooms").click(function(){socket.emit('switchRoom', { newroom: event.target.id, time: getTime() })});
-    //$(".allRooms").click(function(){console.log("tere");});
-    
     
     // catches getUsers response from the server
     socket.on('getUsers', function (data) { 
@@ -73,7 +64,7 @@ $(document).ready(function() {
                 allUsers = key + ', ' + allUsers;
             }
         });
-        $("#jetzt").before('<div class="message announce"><div id="time">'+getTime()+'</div><p id="name">Online users:</p>'+allUsers+'<p></p></div>');
+        $("#jetzt").before('<div class="message announce"><div id="time">'+getTime()+'</div><p id="name"><strong>Online users:</strong></p>'+allUsers+'<p></p></div>');
     });
 
     
@@ -93,21 +84,6 @@ $(document).ready(function() {
         socket.emit('adduser', { username: username, time: getTime() });
     });
     
-	// listener, whenever the server emits 'updaterooms', this updates the room the client is in
-	socket.on('updaterooms', function(rooms, current_room) {
-		$('#rooms').empty();
-		$.each(rooms, function(key, value) {
-			if(value == current_room){
-				$('#rooms').append('<div>' + value + '</div>');
-			}
-			else {
-				//$('#rooms').append('<div><a href="#" class="allRooms" id="'+key+'">' + value + '</a></div>');
-                $('#rooms').append('<div><a href="#" class="allRooms" id="'+key+'" onclick="switchRoom(\''+key+'\'); return false;">' + value + '</a></div>');
-				//$('#rooms').append('<div><a href="#" onclick="console.log(getTime())">' + value + '</a></div>');
-			}
-		});
-	});
-
 });
 
 function getTime() {
@@ -118,7 +94,3 @@ function getTime() {
     return time;
 }
 
-function switchRoom(room){ 
-    //socket.emit('switchRoom', room);
-    socket.emit('switchRoom', { newroom: room, time: getTime() });
-}
