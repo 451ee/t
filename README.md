@@ -1,4 +1,6 @@
 From: https://github.com/451ee/t
+Try it out: http://meie.tallinn.ee:3001
+
 
 WAS IST DAS?
 -------------
@@ -17,17 +19,16 @@ INSTALLATION
 0. Assuming you have node and npm installed
 1. download the package 
 or
-1. git clone git@github.com:451ee/t.git .
-2. sudo npm install
-2.5 I tend to get "node-gyp rebuild 2> builderror.log" but nevertheless the stuff seams to work
-3. go to yourdomain: 3001
+2. git clone git@github.com:451ee/t.git .
+3. sudo npm install
+4. I tend to get "node-gyp rebuild 2> builderror.log" but nevertheless the stuff seams to work
+5. go to yourdomain:3001
 
 SETUP
 -------------
 
 1. basic configuration is in conf.js
-2. /public/stylesheets/fonts.styl is designed for adding custom fonts.
-
+2. /public/stylesheets/fonts.styl - I use it to keep several installations with different fonts.
 
 CURRENT STATUS
 -------------
@@ -41,8 +42,6 @@ I kind of like the idea of a talker without a database + it makes development fa
 
 Usable on all screen sizes.
 Little HTML+CSS.
-
-Try it out http://meie.tallinn.ee
 
 
 PRIORITIES
