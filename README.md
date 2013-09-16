@@ -11,6 +11,24 @@ An idea to combine:
 The big idea is to work on a interface for webapp where all the commands are insterted via keyboard.
 This enables fast creation of functionality without being stuck in the design and user implementation phase.
 
+INSTALLATION
+-------------
+
+0. Assuming you have node and npm installed
+1. download the package 
+or
+1. git clone git@github.com:451ee/t.git .
+2. sudo npm install
+2.5 I tend to get "node-gyp rebuild 2> builderror.log" but nevertheless the stuff seams to work
+3. go to yourdomain: 3001
+
+SETUP
+-------------
+
+1. basic configuration is in conf.js
+2. /public/stylesheets/fonts.styl is designed for adding custom fonts.
+
+
 CURRENT STATUS
 -------------
 
