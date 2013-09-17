@@ -22,7 +22,7 @@ $(document).ready(function() {
             break;
 
             case 'h': // print help screen - does not require broadcasting
-                $("#jetzt").before('<div class="message announce"><p><strong>w</strong> - who - who is here<br><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <br>');
+                $("#jetzt").before('<div class="message announce"><p><strong>w</strong> - who - who is here<br><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <br><strong>y</strong> - yes - success baby <br>');
 			break;
 
 			case 'w': // print online users
@@ -45,7 +45,11 @@ $(document).ready(function() {
             case 'c':
 				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data. name+'</strong> <img src="images/che.png" /></p></div>');
             break;
-                
+
+            case 'y':
+                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p><img class="full" src="images/yes.jpg" /></p></div>');
+            break;
+
             default: 
                 $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p>'+data.message+'</p></div>');
                 document.getElementById('ping1').play();

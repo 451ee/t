@@ -13,7 +13,6 @@ An idea to combine:
 The big idea is to work on a interface for webapp where all the commands are insterted via keyboard.
 This enables fast creation of functionality without being stuck in the design and user implementation phase.
 
-
 INSTALLATION
 -------------
 

@@ -26,6 +26,11 @@ body {
   color: #999;
   text-decoration: none;
 }
+.full {
+  width: 100%;
+  max-width: 570px;
+  height: auto;
+}
 #time {
   float: right;
   color: #999;
