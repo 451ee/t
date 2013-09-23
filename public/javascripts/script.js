@@ -105,7 +105,7 @@ $(document).ready(function() {
 function getTime() {
     var d = new Date();
     var n = d.getHours();
-    var m = d.getMinutes();
+    var m = (d.getMinutes()<10?'0':'') + d.getMinutes();
     var time = n+':'+m;
     return time;
 }
