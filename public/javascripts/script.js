@@ -1,5 +1,16 @@
 // JavaScript Document
 
+/*
+function hideAddressBar(){
+  if(document.documentElement.scrollHeight < window.outerHeight / window.devicePixelRatio) {
+    document.documentElement.style.height = (window.outerHeight / window.devicePixelRatio) + 'px';
+    setTimeout(window.scrollTo(1,1),10);
+  }
+}
+window.addEventListener("load",function(){hideAddressBar();});
+window.addEventListener("orientationchange",function(){hideAddressBar();});
+*/
+
 $(document).ready(function() { 
 	        
 	// hold focus on the text input, unless it's the log in screen.
@@ -68,7 +79,8 @@ $(document).ready(function() {
             break;
         }
 
-        $(window).scrollTop($(document).height()); // autoscroll to bottom of page        
+        $(window).scrollTop($(document).height()); // autoscroll to bottom of page     
+         window.scrollTo(0,1);
 
     });
     
