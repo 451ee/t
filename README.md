@@ -61,6 +61,10 @@ https://app.asana.com/-/share?s=7719476021228-pxHKCllHXsiHL17Dbn8QlqCeedhtgmC3TW
 UPDATES
 --------
 
+5th of Oct 2013
+Now detects width for Android devices.
+Now detects links to images and URLs and autogenerates them.
+
 14th of Sept 2013 
 added support for listing online users and printing who is connected and who not. Also first (hidden) support for users.
 Users and rooms are from this tutorial - http://psitsmike.com/2011/10/node-js-and-socket-io-multiroom-chat-tutorial/
