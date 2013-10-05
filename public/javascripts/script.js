@@ -80,7 +80,6 @@ $(document).ready(function() {
         }
 
         $(window).scrollTop($(document).height()); // autoscroll to bottom of page     
-         window.scrollTo(0,1);
 
     });
     
