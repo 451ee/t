@@ -63,7 +63,10 @@ $(document).ready(function() {
             break;
 
             default: 
-                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p>'+data.message+'</p></div>');
+                var message = data.message;
+                //message = urlsToLinks(message);
+                message = imageToPrint(message);
+                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p>'+message+'</p></div>');
                 document.getElementById('ping1').play();
             break;
         }
@@ -99,7 +102,25 @@ $(document).ready(function() {
 		}
         socket.emit('adduser', { username: username, time: getTime() });
     });
-    
+
+    // automagic link creation from URLs 
+    function urlsToLinks(text) {
+        var exp = /(\b(https?|ftp|file|http):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;        
+        return text.replace(exp,"<a href='$1' target='_blank'>$1</a>"); 
+    }
+
+    // automagic image creation from URLs
+    function imageToPrint(text) {
+        var exp = /(\b(https?|ftp|file|http):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]+(\.jpg|\.jpeg|\.png|\.bmp))/ig;
+        var match =  text.match(exp);
+        if(match !== null){ // is image
+            return text.replace(exp,"<img src='$1' />"); 
+        } 
+        else { // is some other kind of link
+            return urlsToLinks(text);
+        }
+    }
+        
 });
 
 function getTime() {
