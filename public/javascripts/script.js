@@ -114,7 +114,7 @@ $(document).ready(function() {
         var exp = /(\b(https?|ftp|file|http):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]+(\.jpg|\.jpeg|\.png|\.bmp))/ig;
         var match =  text.match(exp);
         if(match !== null){ // is image
-            return text.replace(exp,"<img src='$1' />"); 
+            return text.replace(exp,"<a href='$1' target='_blank'><img class='full' src='$1' /></a>"); 
         } 
         else { // is some other kind of link
             return urlsToLinks(text);
