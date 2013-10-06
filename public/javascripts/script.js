@@ -111,7 +111,7 @@ $(document).ready(function() {
 
     // automagic image creation from URLs
     function imageToPrint(text) {
-        var exp = /(\b(https?|ftp|file|http):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]+(\.jpg|\.jpeg|\.png|\.bmp))/ig;
+        var exp = /(\b(https?|ftp|file|http):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]+(\.jpg|\.jpeg|\.png|\.gif|\.bmp))/ig;
         var match =  text.match(exp);
         if(match !== null){ // is image
             return text.replace(exp,"<a href='$1' target='_blank'><img class='full' src='$1' /></a>"); 
