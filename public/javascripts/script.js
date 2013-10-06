@@ -54,6 +54,10 @@ $(document).ready(function() {
 				$("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data. name+'</strong></p> <img src="images/mybody2.gif" class="full" /></p></div>');
             break;
 
+            case 'lol':
+				$("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data. name+'</strong></p> <img src="images/lol.gif" class="full" /></p></div>');
+            break;
+                
             case 'dance':
 				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data. name+'</strong></p> <img src="images/dance.gif" /></p></div>');
             break;
