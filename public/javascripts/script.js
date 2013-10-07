@@ -40,26 +40,26 @@ $(document).ready(function() {
 
     // catches responses from server and prints them to user.
     socket.on('news', function (data) { 
-
+        
         switch(data.message) {
             case 'c':
-				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data. name+'</strong> <img src="images/che.png" /></p></div>');
+				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong> <img src="images/che.png" /></p></div>');
             break;
 
             case 'mybody':
-				$("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data. name+'</strong></p> <img src="images/mybody.gif" class="full" /></p></div>');
+				$("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/mybody.gif" class="full" /></p></div>');
             break;
                 
             case 'mybody2':
-				$("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data. name+'</strong></p> <img src="images/mybody2.gif" class="full" /></p></div>');
+				$("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/mybody2.gif" class="full" /></p></div>');
             break;
 
             case 'lol':
-				$("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data. name+'</strong></p> <img src="images/lol.gif" class="full" /></p></div>');
+				$("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/lol.gif" class="full" /></p></div>');
             break;
-                
+
             case 'dance':
-				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data. name+'</strong></p> <img src="images/dance.gif" /></p></div>');
+				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/dance.gif" /></p></div>');
             break;
                 
             case 'y':
@@ -68,10 +68,16 @@ $(document).ready(function() {
 
             default: 
                 var message = data.message;
-                //message = urlsToLinks(message);
-                message = imageToPrint(message);
-                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p>'+message+'</p></div>');
-                document.getElementById('ping1').play();
+                
+                var findMeme = /^m /;
+                if(findMeme.test(message)) { // it's a meme 
+                    memeIt(message, data);
+                }
+                else {
+                    message = imageToPrint(message);
+                    $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p>'+message+'</p></div>');
+                    document.getElementById('ping1').play();
+                }
             break;
         }
 
@@ -124,6 +130,64 @@ $(document).ready(function() {
             return urlsToLinks(text);
         }
     }
+    
+    
+    //Memeing goes here
+    function memeIt(message, data) {
+
+/*
+        var res = patt.exec(message);
+        console.log(res);
+        //alert('First number: ' + res[2] + "\nSecond number: " + res[4]);
+*/
+
+        message = message.slice(2);
+        
+        var split = message.indexOf("/"); //console.log(split);
+        var message1 = message.slice(0, split);
+        var message2 = '';
+        message1 = message1.trim();
+        if (split !== -1) {
+           message2 = message.slice(split+1);
+            message2 = message2.trim();
+        }
+        //console.log(message1);
+        //console.log(message2);
+        
+        var printMemeDiv = "<div class='message'><p><canvas id='meme' class='full'></canvas></p></div>"
+        $("#jetzt").before(printMemeDiv);        
+        
+        var canvas = document.getElementById('meme');
+        var context = canvas.getContext('2d');
+        
+        canvas.width  = 510;
+        canvas.height = 338;
+        
+        var imageObj = new Image();
+        
+        imageObj.onload = function() {
+            context.drawImage(imageObj, 0, 0, 510, 338);
+            drawText(message1, message2);
+            var img    = canvas.toDataURL("image/png");
+            //document.write('<img src="'+img+'"/>');
+            $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p><img class="full" src="'+img+'" /></p></div>');
+        };
+        imageObj.src = 'images/meme/1stwp.jpg';
+        
+        function drawText( text ){
+            context.font = '40px Impact';
+            context.textAlign = 'center';
+            context.fillStyle = 'rgba(255, 255, 255, 1)';
+            context.lineWidth = 2;
+            context.strokeStyle = '#000000';
+            //context.fillText(text, canvas.width/2, canvas.height/2);    
+            context.fillText(message1, canvas.width/2, 50);            
+            context.strokeText(message1, canvas.width/2, 50);            
+            context.fillText(message2, canvas.width/2, 315);            
+            context.strokeText(message2, canvas.width/2, 315);            
+        }    
+    }
+    
         
 });
 
