@@ -1,7 +1,9 @@
 // JavaScript Document
 
 $(document).ready(function() { 
-	        
+    
+    function scroll() { $(window).scrollTop($(document).height()); } // autoscroll to bottom of page }     
+
 	// hold focus on the text input, unless it's the log in screen.
 	if ($("#username").is(":visible")) {
 		$("#username").focus();			
@@ -304,6 +306,7 @@ $(document).ready(function() {
             drawText(message1, message2, data.name); // <---- 
             var img    = canvas.toDataURL("image/png");
             $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p><img class="full" src="'+img+'" /></p></div>');
+            scroll();
         };
         imageObj.src = memeImg;
         
