@@ -136,7 +136,7 @@ $(document).ready(function() {
     function memeIt(message, data) {
                 
         if(message === "m") { // if it's just for help
-            $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>Server</strong></p><p>Meme it, bitch!<br><strong>usage: <br /></strong>m fwp text to top / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m impossibru</strong> - IMPOSSIBRU!!<br /><strong>m successbaby</strong> - SuccessBaby<br /><strong>m yuno</strong> - Y U No?<br /><strong>m goodguy</strong> - Good Guy Greg<br /><strong>m mostinteresting</strong> - Most interesting guy on earth<br /><strong>m onedoesnot</strong> - One does not simply<br /><strong>m morpheus</strong> - What if I told you?<br /></p></div>');        
+            $("#jetzt").before('<div class="message announce"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>Server</strong></p><p>Meme it, bitch!<br><strong>usage: <br /></strong>m fwp text to top / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m impossibru</strong> - IMPOSSIBRU!!<br /><strong>m successbaby</strong> - SuccessBaby<br /><strong>m yuno</strong> - Y U No?<br /><strong>m goodguy</strong> - Good Guy Greg<br /><strong>m mostinteresting</strong> - Most interesting guy on earth<br /><strong>m onedoesnot</strong> - One does not simply<br /><strong>m morpheus</strong> - What if I told you?<br /></p></div>');        
         
         }  else { // all other meme cases
             
