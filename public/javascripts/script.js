@@ -70,7 +70,7 @@ $(document).ready(function() {
                 var message = data.message;
                 
                 var findMeme = /^m /;
-                if(findMeme.test(message)) { // it's a meme 
+                if(findMeme.test(message) || message === "m") { // it's a meme 
                     memeIt(message, data);
                 }
                 else {
@@ -134,16 +134,82 @@ $(document).ready(function() {
     
     //Memeing goes here
     function memeIt(message, data) {
-
-/*
-        var res = patt.exec(message);
-        console.log(res);
-        //alert('First number: ' + res[2] + "\nSecond number: " + res[4]);
-*/
-
-        message = message.slice(2);
         
-        var split = message.indexOf("/"); //console.log(split);
+        /*
+        m
+        m fwp
+        m fuckme
+        m fwp Teretere
+        m fwp teretere / teretere
+        */
+        
+        if(message === "m") {
+            $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>Server</strong></p><p>Meme it, bitch!<br><strong>usage: <br /></strong>m fwp text to top / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m fuckme</strong> - Fuck me, right?</p></div>');        
+        }  else {
+            
+            message = message.slice(2); // remove "m " from beginning
+            if(message.indexOf(" ") != -1) var memeName = message.slice(0, message.indexOf(" ")); // get the meme name (if the text fields are not empty)
+            
+            message = message.slice(message.indexOf(" ")+1); // remove the meme name
+            cl(memeName);
+            if(memeName === undefined) var memeName = message; // that's in case "m fwp", but messes up "m fwp tere".
+            console.log(message+" //// " + memeName);
+                                        
+            var split = message.indexOf("/"); // find the position of "/" mark
+            
+            //var message1 = '';
+            //var message2 = '';
+                                            
+
+            if (split === -1) { // not a 2 lined meme
+                if(message === memeName) { // not even a 1 lined meme
+                    var message1 = '';
+                    var message2 = ''; 
+                } else {
+                    var message1 = message.trim(); // it's a 1 lined meme
+                    var message2 = '';    
+                    
+                }
+            } else { // 2 lined meme
+                var message1 = message.slice(0, split).trim();
+                var message2 = message.slice(split+1).trim();
+            
+            }
+
+            /*
+            var message1 = message.slice(0, split);
+            var message2 = '';
+            message1 = message1.trim();
+            if (split !== -1) {
+                message2 = message.slice(split+1);
+                message2 = message2.trim();
+            }
+            */
+            //console.log(message1+" //// " + message2);
+
+            
+            switch (memeName) {
+            
+                case 'fwp':
+                    
+                    
+                    
+                break;
+            
+            
+            
+            
+            
+            }
+        }
+
+        
+        
+        
+        //message = message.slice(2);
+        /*
+        var split = message.indexOf("/"); //console.log(split);        
+        
         var message1 = message.slice(0, split);
         var message2 = '';
         message1 = message1.trim();
@@ -151,9 +217,7 @@ $(document).ready(function() {
            message2 = message.slice(split+1);
             message2 = message2.trim();
         }
-        //console.log(message1);
-        //console.log(message2);
-        
+        */
         var printMemeDiv = "<div class='message'><p><canvas id='meme' class='full'></canvas></p></div>"
         $("#jetzt").before(printMemeDiv);        
         
@@ -199,3 +263,6 @@ function getTime() {
     return time;
 }
 
+function cl(data) {
+    console.log(data);
+}
