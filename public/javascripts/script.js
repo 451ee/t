@@ -22,7 +22,7 @@ $(document).ready(function() {
             break;
 
             case 'h': // print help screen - does not require broadcasting
-                $("#jetzt").before('<div class="message announce"><p><strong>w</strong> - who - who is here<br><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <br><strong>y</strong> - yes - success baby <br>');
+                $("#jetzt").before('<div class="message announce"><p><strong>w</strong> - who - who is here<br><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <br><strong>y</strong> - yes - success baby <br><strong>m</strong> - m - create a meme <br>');
 			break;
 
 			case 'w': // print online users
@@ -136,7 +136,7 @@ $(document).ready(function() {
     function memeIt(message, data) {
                 
         if(message === "m") { // if it's just for help
-            $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>Server</strong></p><p>Meme it, bitch!<br><strong>usage: <br /></strong>m fwp text to top / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m fuckme</strong> - Fuck me, right?</p></div>');        
+            $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>Server</strong></p><p>Meme it, bitch!<br><strong>usage: <br /></strong>m fwp text to top / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m impossibru</strong> - IMPOSSIBRU!!<br /><strong>m successbaby</strong> - SuccessBaby<br /><strong>m yuno</strong> - Y U No?<br /><strong>m goodguy</strong> - Good Guy Greg<br /><strong>m mostinteresting</strong> - Most interesting guy on earth<br /><strong>m onedoesnot</strong> - One does not simply<br /><strong>m morpheus</strong> - What if I told you?<br /></p></div>');        
         
         }  else { // all other meme cases
             
@@ -167,18 +167,63 @@ $(document).ready(function() {
                     var memeWidth = 510;
                     var memeHeight = 338;
                     var memeImg = "images/meme/1stwp.jpg";
+                    var memeFont = '40px Impact';
                 break;
 
                 case 'successbaby':    
                     var memeWidth = 570;
                     var memeHeight = 379;
                     var memeImg = "images/meme/successbaby.jpg";
+                    var memeFont = '40px Impact';
                 break;
-        
+
+                case 'impossibru':    
+                    var memeWidth = 640;
+                    var memeHeight = 480;
+                    var memeImg = "images/meme/impossibru.jpg";
+                    var memeFont = '60px Impact';
+                break;
+
+                case 'yuno':    
+                    var memeWidth = 600;
+                    var memeHeight = 450;
+                    var memeImg = "images/meme/yuno.gif";
+                    var memeFont = '40px Impact';
+                break;
+
+                case 'goodguy':    
+                    var memeWidth = 530;
+                    var memeHeight = 525;
+                    var memeImg = "images/meme/goodguy.jpg";
+                    var memeFont = '40px Impact';
+                break;
+
+                case 'mostinteresting':    
+                    var memeWidth = 430;
+                    var memeHeight = 539;
+                    var memeImg = "images/meme/mostinteresting.jpg";
+                    var memeFont = '40px Impact';
+                break;
+
+                case 'onedoesnot':    
+                    var memeWidth = 568;
+                    var memeHeight = 335;
+                    var memeImg = "images/meme/onedoesnotsimply.jpg";
+                    var memeFont = '40px Impact';
+                break;
+
+                case 'morpheus':    
+                    var memeWidth = 400;
+                    var memeHeight = 400;
+                    var memeImg = "images/meme/morpheus.jpg";
+                    var memeFont = '40px Impact';
+                break;
+                    
                 default:
                     var memeWidth = 570;
                     var memeHeight = 200;
                     var memeImg = "images/meme/noSuchMeme.gif";
+                    var memeFont = '40px Impact';
                     message1 = memeName + " ?";
             
             }        
@@ -201,16 +246,16 @@ $(document).ready(function() {
             imageObj.src = memeImg;
             
             function drawText( text ){
-                context.font = '40px Impact';
+                context.font = memeFont;
                 context.textAlign = 'center';
                 context.fillStyle = 'rgba(255, 255, 255, 1)';
                 context.lineWidth = 2;
                 context.strokeStyle = '#000000';
                 //context.fillText(text, canvas.width/2, canvas.height/2);    
-                context.fillText(message1, canvas.width/2, 50);            
-                context.strokeText(message1, canvas.width/2, 50);            
-                context.fillText(message2, canvas.width/2, 315);            
-                context.strokeText(message2, canvas.width/2, 315);            
+                context.fillText(message1, canvas.width/2, 55);            
+                context.strokeText(message1, canvas.width/2, 55);            
+                context.fillText(message2, canvas.width/2, memeHeight-25);            
+                context.strokeText(message2, canvas.width/2, memeHeight-25);            
             }    
         }
     }
