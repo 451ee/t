@@ -251,6 +251,13 @@ $(document).ready(function() {
                 var memeImg = "images/meme/overly_attached.jpg";
                 var memeFont = '40px Impact';
             break;
+
+            case '451':    
+                var memeWidth = 564;
+                var memeHeight = 258;
+                var memeImg = "images/meme/451.jpg";
+                var memeFont = '40px Impact';
+            break;
                 
             default:
                 var memeWidth = 570;
