@@ -92,11 +92,11 @@ $(document).ready(function() {
                 else {
                     message = imageToPrint(message);
                     $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p>'+message+'</p></div>');
-                    document.getElementById('ping1').play();
+                    //document.getElementById('ping1').play();
                 }
             break;
         }
-
+        if (name != data.name) document.getElementById('ping1').play();
         $(window).scrollTop($(document).height()); // autoscroll to bottom of page     
 
     });
@@ -118,15 +118,16 @@ $(document).ready(function() {
 
         e.preventDefault();         
         var username = $('#username');
-		username = username.val();
-		name = String(username);
+		username = username.val(); 
+		name = String(username); //cl (username);
 				
 		if (username) { 
 			$('.message').show();
 			$("#input").focus();	
 			$('#message1').hide();
+            socket.emit('adduser', { username: username, time: getTime() });
+            // sessionStorage.username = username; // this can be achieved just with using "name"
 		}
-        socket.emit('adduser', { username: username, time: getTime() });
     });
 
     // automagic link creation from URLs 
@@ -149,7 +150,7 @@ $(document).ready(function() {
     
     
     //Memeing goes here
-    function memeIt(message, data) {
+    function memeIt(message, data) { //cl(sessionStorage.username);
                 
         message = message.slice(2); // remove "m " from beginning
         if(message.indexOf(" ") != -1) var memeName = message.slice(0, message.indexOf(" ")); // get the meme name (if the text fields are not empty)
@@ -271,13 +272,13 @@ $(document).ready(function() {
         
         imageObj.onload = function() {
             context.drawImage(imageObj, 0, 0, memeWidth, memeHeight);
-            drawText(message1, message2);
+            drawText(message1, message2, data.name); // <---- 
             var img    = canvas.toDataURL("image/png");
             $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p><img class="full" src="'+img+'" /></p></div>');
         };
         imageObj.src = memeImg;
         
-        function drawText( text ){
+        function drawText( message1, message2, username ){
             context.font = memeFont;
             context.textAlign = 'center';
             context.fillStyle = 'rgba(255, 255, 255, 1)';
@@ -287,8 +288,8 @@ $(document).ready(function() {
             context.fillText(message1, canvas.width/2, 55);            
             context.strokeText(message1, canvas.width/2, 55);            
             context.fillText(message2, canvas.width/2, memeHeight-25);            
-            context.strokeText(message2, canvas.width/2, memeHeight-25);   
-            document.getElementById('ping1').play();
+            context.strokeText(message2, canvas.width/2, memeHeight-25);  
+            if (name != username) document.getElementById('ping1').play();
         }    
     }
         
