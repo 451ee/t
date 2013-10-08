@@ -22,11 +22,11 @@ $(document).ready(function() {
             break;
 
             case 'h': // print help screen - does not require broadcasting
-                $("#jetzt").before('<div class="message announce"><p><strong>w</strong> - who - who is here<br><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <br><strong>y</strong> - yes - success baby <br><strong>m</strong> - m - create a meme <br>');
+                $("#jetzt").before('<div class="message announce"><p><strong>w</strong> - who - who is here<br><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <!--<br><strong>y</strong> - yes - success baby --><br><strong>m</strong> - meme - create a meme <br>');
 			break;
                 
             case 'm': // print help screen for memeing       
-            $("#jetzt").before('<div class="message announce"><img src="images/drm.jpg" id="avatar" /><p id="name"><strong>Server</strong></p><p>Meme it, bitch!<br><strong>usage: <br /></strong>m fwp<br>m fwp text to top / text to bottom<br>m fwp text to top<br>m fwp / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m impossibru</strong> - IMPOSSIBRU!!<br /><strong>m successbaby</strong> - SuccessBaby<br /><strong>m yuno</strong> - Y U No?<br /><strong>m goodguy</strong> - Good Guy Greg<br /><strong>m mostinteresting</strong> - Most interesting guy on earth<br /><strong>m onedoesnot</strong> - One does not simply<br /><strong>m morpheus</strong> - What if I told you?<br /><strong>m steve</strong> - Scumbag Steve<br /><strong>m stacy</strong> - Scumbag Stacy<br /><strong>m overly</strong> - Overly attached girlfriend<br /></p></div>');        
+            $("#jetzt").before('<div class="message announce"><img src="images/drm.jpg" id="avatar" /><p id="name"><strong>Server</strong></p><p>Meme it, bitch!<br><strong>usage: <br /></strong>m fwp<br>m fwp text to top / text to bottom<br>m fwp text to top<br>m fwp / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m impossibru</strong> - IMPOSSIBRU!!<br /><strong>m successbaby</strong> - SuccessBaby<br /><strong>m yuno</strong> - Y U No?<br /><strong>m goodguy</strong> - Good Guy Greg<br /><strong>m mostinteresting</strong> - Most interesting guy on earth<br /><strong>m onedoesnot</strong> - One does not simply<br /><strong>m morpheus</strong> - What if I told you?<br /><strong>m steve</strong> - Scumbag Steve<br /><strong>m stacy</strong> - Scumbag Stacy<br /><strong>m overly</strong> - Overly attached girlfriend<br /></p><strong>m fuckme</strong> - Fuck me, right? <br /></p><strong>m nobody</strong> - Ain&quot;t nobody got time for that <br /></p></div>');        
             break;
                 
 			case 'w': // print online users
@@ -67,7 +67,7 @@ $(document).ready(function() {
             break;
 
             case 'selffive':
-				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/selffive.gif" /></p></div>');
+				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img class="full" src="images/selffive.gif" /></p></div>');
             break;
 
             case 'i':
@@ -194,6 +194,7 @@ $(document).ready(function() {
                 var memeHeight = 480;
                 var memeImg = "images/meme/impossibru.jpg";
                 var memeFont = '60px Impact';
+                if (message2 === '') message2 = "IMPOSSIBRU!";
             break;
 
             case 'yuno':    
@@ -201,6 +202,7 @@ $(document).ready(function() {
                 var memeHeight = 450;
                 var memeImg = "images/meme/yuno.gif";
                 var memeFont = '40px Impact';
+                if (message1 === '') message1 = "Y U No";
             break;
 
             case 'goodguy':    
@@ -222,6 +224,7 @@ $(document).ready(function() {
                 var memeHeight = 335;
                 var memeImg = "images/meme/onedoesnotsimply.jpg";
                 var memeFont = '40px Impact';
+                if (message1 === '') message1 = "One does not simply";
             break;
 
             case 'morpheus':    
@@ -229,6 +232,7 @@ $(document).ready(function() {
                 var memeHeight = 400;
                 var memeImg = "images/meme/morpheus.jpg";
                 var memeFont = '40px Impact';
+                if (message1 === '') message1 = "What if I told you";
             break;
 
             case 'stacy':    
@@ -258,6 +262,24 @@ $(document).ready(function() {
                 var memeImg = "images/meme/451.jpg";
                 var memeFont = '40px Impact';
             break;
+
+            case 'fuckme':    
+                var memeWidth = 500;
+                var memeHeight = 321;
+                var memeImg = "images/meme/fuckme.jpg";
+                var memeFont = '40px Impact';
+                console.log (message2);
+                if (message2 === '') message2 = "fuck me, right?";
+            break;
+
+            case 'nobody':    
+                var memeWidth = 500;
+                var memeHeight = 321;
+                var memeImg = "images/meme/aintnobody.jpg";
+                var memeFont = '35px Impact';
+                console.log (message2);
+                if (message2 === '') message2 = "Ain't nobody got time for that";
+            break;
                 
             default:
                 var memeWidth = 570;
@@ -286,6 +308,9 @@ $(document).ready(function() {
         imageObj.src = memeImg;
         
         function drawText( message1, message2, username ){
+            
+            message1 = message1.toUpperCase();
+            message2 = message2.toUpperCase();
             context.font = memeFont;
             context.textAlign = 'center';
             context.fillStyle = 'rgba(255, 255, 255, 1)';
