@@ -26,7 +26,7 @@ $(document).ready(function() {
 			break;
                 
             case 'm': // print help screen for memeing       
-            $("#jetzt").before('<div class="message announce"><img src="images/drm.jpg" id="avatar" /><p id="name"><strong>Server</strong></p><p>Meme it, bitch!<br><strong>usage: <br /></strong>m fwp<br>m fwp text to top / text to bottom<br>m fwp text to top<br>m fwp / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m impossibru</strong> - IMPOSSIBRU!!<br /><strong>m successbaby</strong> - SuccessBaby<br /><strong>m yuno</strong> - Y U No?<br /><strong>m goodguy</strong> - Good Guy Greg<br /><strong>m mostinteresting</strong> - Most interesting guy on earth<br /><strong>m onedoesnot</strong> - One does not simply<br /><strong>m morpheus</strong> - What if I told you?<br /></p></div>');        
+            $("#jetzt").before('<div class="message announce"><img src="images/drm.jpg" id="avatar" /><p id="name"><strong>Server</strong></p><p>Meme it, bitch!<br><strong>usage: <br /></strong>m fwp<br>m fwp text to top / text to bottom<br>m fwp text to top<br>m fwp / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m impossibru</strong> - IMPOSSIBRU!!<br /><strong>m successbaby</strong> - SuccessBaby<br /><strong>m yuno</strong> - Y U No?<br /><strong>m goodguy</strong> - Good Guy Greg<br /><strong>m mostinteresting</strong> - Most interesting guy on earth<br /><strong>m onedoesnot</strong> - One does not simply<br /><strong>m morpheus</strong> - What if I told you?<br /><strong>m steve</strong> - Scumbag Steve<br /><strong>m stacy</strong> - Scumbag Stacy<br /><strong>m overly</strong> - Overly attached girlfriend<br /></p></div>');        
             break;
                 
 			case 'w': // print online users
@@ -64,6 +64,18 @@ $(document).ready(function() {
 
             case 'dance':
 				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/dance.gif" /></p></div>');
+            break;
+
+            case 'selffive':
+				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/selffive.gif" /></p></div>');
+            break;
+
+            case 'i':
+				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/idea.jpeg" /></p></div>');
+            break;
+
+            case '8':
+				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/note.gif" /></p></div>');
             break;
                 
             case 'y':
@@ -215,6 +227,27 @@ $(document).ready(function() {
                 var memeWidth = 400;
                 var memeHeight = 400;
                 var memeImg = "images/meme/morpheus.jpg";
+                var memeFont = '40px Impact';
+            break;
+
+            case 'stacy':    
+                var memeWidth = 555;
+                var memeHeight = 666;
+                var memeImg = "images/meme/stacy.jpg";
+                var memeFont = '40px Impact';
+            break;
+
+            case 'steve':    
+                var memeWidth = 600;
+                var memeHeight = 604;
+                var memeImg = "images/meme/steve.jpg";
+                var memeFont = '40px Impact';
+            break;
+
+            case 'overly':    
+                var memeWidth = 636;
+                var memeHeight = 480;
+                var memeImg = "images/meme/overly_attached.jpg";
                 var memeFont = '40px Impact';
             break;
                 
