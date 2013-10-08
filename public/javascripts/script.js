@@ -134,124 +134,86 @@ $(document).ready(function() {
     
     //Memeing goes here
     function memeIt(message, data) {
-        
-        /*
-        m
-        m fwp
-        m fuckme
-        m fwp Teretere
-        m fwp teretere / teretere
-        */
-        
-        if(message === "m") {
+                
+        if(message === "m") { // if it's just for help
             $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>Server</strong></p><p>Meme it, bitch!<br><strong>usage: <br /></strong>m fwp text to top / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m fuckme</strong> - Fuck me, right?</p></div>');        
-        }  else {
+        
+        }  else { // all other meme cases
             
             message = message.slice(2); // remove "m " from beginning
             if(message.indexOf(" ") != -1) var memeName = message.slice(0, message.indexOf(" ")); // get the meme name (if the text fields are not empty)
             
             message = message.slice(message.indexOf(" ")+1); // remove the meme name
-            cl(memeName);
             if(memeName === undefined) var memeName = message; // that's in case "m fwp", but messes up "m fwp tere".
-            console.log(message+" //// " + memeName);
                                         
             var split = message.indexOf("/"); // find the position of "/" mark
             
-            //var message1 = '';
-            //var message2 = '';
+            var message1 = '';
+            var message2 = '';
                                             
-
             if (split === -1) { // not a 2 lined meme
                 if(message === memeName) { // not even a 1 lined meme
-                    var message1 = '';
-                    var message2 = ''; 
                 } else {
-                    var message1 = message.trim(); // it's a 1 lined meme
-                    var message2 = '';    
-                    
+                     message1 = message.trim(); // it's a 1 lined meme
                 }
             } else { // 2 lined meme
-                var message1 = message.slice(0, split).trim();
-                var message2 = message.slice(split+1).trim();
-            
+                message1 = message.slice(0, split).trim();
+                message2 = message.slice(split+1).trim();
             }
 
-            /*
-            var message1 = message.slice(0, split);
-            var message2 = '';
-            message1 = message1.trim();
-            if (split !== -1) {
-                message2 = message.slice(split+1);
-                message2 = message2.trim();
-            }
-            */
-            //console.log(message1+" //// " + message2);
-
-            
             switch (memeName) {
             
                 case 'fwp':
-                    
-                    
-                    
+                    var memeWidth = 510;
+                    var memeHeight = 338;
+                    var memeImg = "images/meme/1stwp.jpg";
                 break;
-            
-            
-            
-            
-            
-            }
-        }
 
+                case 'successbaby':    
+                    var memeWidth = 570;
+                    var memeHeight = 379;
+                    var memeImg = "images/meme/successbaby.jpg";
+                break;
         
-        
-        
-        //message = message.slice(2);
-        /*
-        var split = message.indexOf("/"); //console.log(split);        
-        
-        var message1 = message.slice(0, split);
-        var message2 = '';
-        message1 = message1.trim();
-        if (split !== -1) {
-           message2 = message.slice(split+1);
-            message2 = message2.trim();
+                default:
+                    var memeWidth = 570;
+                    var memeHeight = 200;
+                    var memeImg = "images/meme/noSuchMeme.gif";
+                    message1 = memeName + " ?";
+            
+            }        
+            $("#jetzt").before("<div class='message'><p><canvas id='meme' class='full'></canvas></p></div>");        
+            
+            var canvas = document.getElementById('meme');
+            var context = canvas.getContext('2d');
+            
+            canvas.width  = memeWidth;
+            canvas.height = memeHeight;
+            
+            var imageObj = new Image();
+            
+            imageObj.onload = function() {
+                context.drawImage(imageObj, 0, 0, memeWidth, memeHeight);
+                drawText(message1, message2);
+                var img    = canvas.toDataURL("image/png");
+                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p><img class="full" src="'+img+'" /></p></div>');
+            };
+            imageObj.src = memeImg;
+            
+            function drawText( text ){
+                context.font = '40px Impact';
+                context.textAlign = 'center';
+                context.fillStyle = 'rgba(255, 255, 255, 1)';
+                context.lineWidth = 2;
+                context.strokeStyle = '#000000';
+                //context.fillText(text, canvas.width/2, canvas.height/2);    
+                context.fillText(message1, canvas.width/2, 50);            
+                context.strokeText(message1, canvas.width/2, 50);            
+                context.fillText(message2, canvas.width/2, 315);            
+                context.strokeText(message2, canvas.width/2, 315);            
+            }    
         }
-        */
-        var printMemeDiv = "<div class='message'><p><canvas id='meme' class='full'></canvas></p></div>"
-        $("#jetzt").before(printMemeDiv);        
-        
-        var canvas = document.getElementById('meme');
-        var context = canvas.getContext('2d');
-        
-        canvas.width  = 510;
-        canvas.height = 338;
-        
-        var imageObj = new Image();
-        
-        imageObj.onload = function() {
-            context.drawImage(imageObj, 0, 0, 510, 338);
-            drawText(message1, message2);
-            var img    = canvas.toDataURL("image/png");
-            //document.write('<img src="'+img+'"/>');
-            $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p><img class="full" src="'+img+'" /></p></div>');
-        };
-        imageObj.src = 'images/meme/1stwp.jpg';
-        
-        function drawText( text ){
-            context.font = '40px Impact';
-            context.textAlign = 'center';
-            context.fillStyle = 'rgba(255, 255, 255, 1)';
-            context.lineWidth = 2;
-            context.strokeStyle = '#000000';
-            //context.fillText(text, canvas.width/2, canvas.height/2);    
-            context.fillText(message1, canvas.width/2, 50);            
-            context.strokeText(message1, canvas.width/2, 50);            
-            context.fillText(message2, canvas.width/2, 315);            
-            context.strokeText(message2, canvas.width/2, 315);            
-        }    
     }
-    
         
 });
 
