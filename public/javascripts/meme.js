@@ -32,14 +32,14 @@ function memeIt(message, data) { //cl(sessionStorage.username);
             var memeFont = '40px Impact';
         break;
 
-        case 'successbaby':    
+        case 'baby':    
             var memeWidth = 570;
             var memeHeight = 379;
             var memeImg = "images/meme/successbaby.jpg";
             var memeFont = '40px Impact';
         break;
 
-        case 'impossibru':    
+        case 'bru':    
             var memeWidth = 640;
             var memeHeight = 480;
             var memeImg = "images/meme/impossibru.jpg";
@@ -52,7 +52,7 @@ function memeIt(message, data) { //cl(sessionStorage.username);
             var memeHeight = 450;
             var memeImg = "images/meme/yuno.gif";
             var memeFont = '40px Impact';
-            if (message1 === '') message1 = "Y U No";
+            //if (message1 === '') message1 = "Y U No";
         break;
 
         case 'goodguy':    
@@ -62,14 +62,14 @@ function memeIt(message, data) { //cl(sessionStorage.username);
             var memeFont = '40px Impact';
         break;
 
-        case 'mostinteresting':    
+        case 'man':    
             var memeWidth = 430;
             var memeHeight = 539;
             var memeImg = "images/meme/mostinteresting.jpg";
             var memeFont = '40px Impact';
         break;
 
-        case 'onedoesnot':    
+        case 'simply':    
             var memeWidth = 568;
             var memeHeight = 335;
             var memeImg = "images/meme/onedoesnotsimply.jpg";
@@ -77,7 +77,7 @@ function memeIt(message, data) { //cl(sessionStorage.username);
             if (message1 === '') message1 = "One does not simply";
         break;
 
-        case 'morpheus':    
+        case 'whatif':    
             var memeWidth = 400;
             var memeHeight = 400;
             var memeImg = "images/meme/morpheus.jpg";
