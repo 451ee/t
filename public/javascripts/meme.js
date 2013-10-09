@@ -118,16 +118,21 @@ function memeIt(message, data) { //cl(sessionStorage.username);
             var memeHeight = 321;
             var memeImg = "images/meme/fuckme.jpg";
             var memeFont = '40px Impact';
-            console.log (message2);
             if (message2 === '') message2 = "fuck me, right?";
         break;
 
+        case 'fa':    
+            var memeWidth = 500;
+            var memeHeight = 500;
+            var memeImg = "images/meme/fa.jpg";
+            var memeFont = '40px Impact';
+        break;
+            
         case 'nobody':    
             var memeWidth = 500;
             var memeHeight = 321;
             var memeImg = "images/meme/aintnobody.jpg";
             var memeFont = '35px Impact';
-            console.log (message2);
             if (message2 === '') message2 = "Ain't nobody got time for that";
         break;
             
