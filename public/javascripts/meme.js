@@ -99,7 +99,7 @@ function memeIt(message, data) { //cl(sessionStorage.username);
             var memeFont = '40px Impact';
         break;
 
-        case 'overly':    
+        case 'gf':    
             var memeWidth = 636;
             var memeHeight = 480;
             var memeImg = "images/meme/overly_attached.jpg";
