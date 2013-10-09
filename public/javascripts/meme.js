@@ -85,14 +85,14 @@ function memeIt(message, data) { //cl(sessionStorage.username);
             if (message1 === '') message1 = "What if I told you";
         break;
 
-        case 'stacy':    
+        case 'scumg':    
             var memeWidth = 555;
             var memeHeight = 666;
             var memeImg = "images/meme/stacy.jpg";
             var memeFont = '40px Impact';
         break;
 
-        case 'steve':    
+        case 'scumb':    
             var memeWidth = 600;
             var memeHeight = 604;
             var memeImg = "images/meme/steve.jpg";
