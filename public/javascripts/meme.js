@@ -38,10 +38,10 @@ var memes = [
         "img" : "images/meme/overly_attached.jpg",
     },{
         "name": "451",
-        "img" : "images/meme/fuckme.jpg",
+        "img" : "images/meme/451.jpg",
     },{
         "name": "fuckme",
-        "img" : "images/meme/1stwp.jpg",
+        "img" : "images/meme/fuckme.jpg",
         "message2" : "fuck me, right?",
     },{
         "name": "fa",
