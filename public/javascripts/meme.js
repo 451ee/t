@@ -1,78 +1,84 @@
 
-//var memes = new Array();
-
 var memes = [ 
     {
         "name": "fwp",
-        "memeImg" : "images/meme/1stwp.jpg",
+        "img" : "images/meme/1stwp.jpg",
     },{
         "name": "baby",
-        "memeImg" : "images/meme/successbaby.jpg",
+        "img" : "images/meme/successbaby.jpg",
     },{
         "name": "bru",
-        "memeImg" : "images/meme/impossibru.jpg",
-        "message2" = "IMPOSSIBRU!",
+        "img" : "images/meme/impossibru.jpg",
+        "message2" : "IMPOSSIBRU!",
     },{
         "name": "yuno",
-        "memeImg" : "images/meme/yuno.gif",
+        "img" : "images/meme/yuno.gif",
     },{
         "name": "goodguy",
-        "memeImg" : "images/meme/goodguy.jpg",
+        "img" : "images/meme/goodguy.jpg",
     },{
         "name": "man",
-        "memeImg" : "images/meme/mostinteresting.jpg",
+        "img" : "images/meme/mostinteresting.jpg",
     },{
         "name": "simply",
-        "memeImg" : "images/meme/onedoesnotsimply.jpg",
+        "img" : "images/meme/onedoesnotsimply.jpg",
         "message1" : "One does not simply",
     },{
         "name": "whatif",
-        "memeImg" : "images/meme/morpheus.jpg",
+        "img" : "images/meme/morpheus.jpg",
         "message1" : "What if I told you",
     },{
         "name": "scumg",
-        "memeImg" : "images/meme/stacy.jpg",
+        "img" : "images/meme/stacy.jpg",
     },{
         "name": "scumb",
-        "memeImg" : "images/meme/steve.jpg",
+        "img" : "images/meme/steve.jpg",
     },{
         "name": "gf",
-        "memeImg" : "images/meme/overly_attached.jpg",
+        "img" : "images/meme/overly_attached.jpg",
     },{
         "name": "451",
-        "memeImg" : "images/meme/fuckme.jpg",
+        "img" : "images/meme/fuckme.jpg",
     },{
         "name": "fuckme",
-        "memeImg" : "images/meme/1stwp.jpg",
+        "img" : "images/meme/1stwp.jpg",
         "message2" : "fuck me, right?",
     },{
         "name": "fa",
-        "memeImg" : "images/meme/fa.jpg",
+        "img" : "images/meme/fa.jpg",
     },{
         "name": "nobody",
-        "memeImg" : "images/meme/aintnobody.jpg",
+        "img" : "images/meme/aintnobody.jpg",
         "message2" : "Ain't nobody got time for that", 
     },{
         "name": "default",
-        "memeImg" : "images/meme/noSuchMeme.gif",
+        "img" : "images/meme/noSuchMeme.gif",
     }
 ]
 
-//console.log("memes" + memes);
-console.log(memes[0]);
-
-//Memeing goes here
-function memeIt(message, data) { //cl(sessionStorage.username);
-            
+// takes meme message and slices & returns meme name
+function getMemeName(message) {
     message = message.slice(2); // remove "m " from beginning
     if(message.indexOf(" ") != -1) var memeName = message.slice(0, message.indexOf(" ")); // get the meme name (if the text fields are not empty)
     
     message = message.slice(message.indexOf(" ")+1); // remove the meme name
     if(memeName === undefined) var memeName = message; // that's in case "m fwp", but messes up "m fwp tere".
+
+    var processedMessage = new Array();
+    processedMessage['memeName'] = memeName;
+    processedMessage['message'] = message;
+    return processedMessage;
+}
+
+function memeIt(message, data) { //cl(sessionStorage.username);
+            
+    var processedMessage = getMemeName(message);
+    message = processedMessage['message'];
+    memeName = processedMessage['memeName'];
                                 
     var split = message.indexOf("/"); // find the position of "/" mark
     
-    var message1 = '';
+    var message1 = ''; 
     var message2 = '';
                                     
     if (split === -1) { // not a 2 lined meme
@@ -84,109 +90,25 @@ function memeIt(message, data) { //cl(sessionStorage.username);
         message1 = message.slice(0, split).trim();
         message2 = message.slice(split+1).trim();
     }
-
-    switch (memeName) {
     
-        case 'fwp':
-            var memeImg = "images/meme/1stwp.jpg";
-            //var memeFont = '40px Impact';
-        break;
-
-        case 'baby':    
-            var memeImg = "images/meme/successbaby.jpg";
-            //var memeFont = '40px Impact';
-        break;
-
-        case 'bru':    
-            var memeImg = "images/meme/impossibru.jpg";
-            //var memeFont = '40px Impact';
-            if (message2 === '') message2 = "IMPOSSIBRU!";
-        break;
-
-        case 'yuno':    
-            var memeImg = "images/meme/yuno.gif";
-            //var memeFont = '40px Impact';
-            //if (message1 === '') message1 = "Y U No";
-        break;
-
-        case 'goodguy':    
-            var memeImg = "images/meme/goodguy.jpg";
-            //var memeFont = '40px Impact';
-        break;
-
-        case 'man':    
-            var memeImg = "images/meme/mostinteresting.jpg";
-            //var memeFont = '40px Impact';
-        break;
-
-        case 'simply':    
-            var memeImg = "images/meme/onedoesnotsimply.jpg";
-            //var memeFont = '40px Impact';
-            if (message1 === '') message1 = "One does not simply";
-        break;
-
-        case 'whatif':    
-            var memeImg = "images/meme/morpheus.jpg";
-            //var memeFont = '40px Impact';
-            if (message1 === '') message1 = "What if I told you";
-        break;
-
-        case 'scumg':    
-            var memeImg = "images/meme/stacy.jpg";
-            //var memeFont = '40px Impact';
-        break;
-
-        case 'scumb':    
-            var memeImg = "images/meme/steve.jpg";
-            //var memeFont = '40px Impact';
-        break;
-
-        case 'gf':    
-            var memeImg = "images/meme/overly_attached.jpg";
-            //var memeFont = '40px Impact';
-        break;
-
-        case '451':    
-            var memeImg = "images/meme/451.jpg";
-            //var memeFont = '40px Impact';
-        break;
-
-        case 'fuckme':    
-            var memeImg = "images/meme/fuckme.jpg";
-            //var memeFont = '40px Impact';
-            if (message2 === '') message2 = "fuck me, right?";
-        break;
-
-        case 'fa':    
-            var memeImg = "images/meme/fa.jpg";
-            //var memeFont = '40px Impact';
-        break;
-            
-        case 'nobody':    
-            var memeImg = "images/meme/aintnobody.jpg";
-            //var memeFont = '35px Impact';
-            if (message2 === '') message2 = "Ain't nobody got time for that";
-        break;
-            
-        default:
-            var memeImg = "images/meme/noSuchMeme.gif";
-            //var memeFont = '40px Impact';
-            message1 = memeName + " ?";
+    var memeImg = "images/meme/noSuchMeme.gif";
     
-    }        
+    $.each(memes, function(key, value) {
+        if(memeName === value.name) {
+            memeImg = value.img;
+            if(value.message1) message1 = value.message1;
+            if(value.message2) message2 = value.message2;
+        }
+    });
+
     $("#jetzt").before("<div class='message'><p><canvas id='meme' class='full'></canvas></p></div>");        
     
     var canvas = document.getElementById('meme');
     var context = canvas.getContext('2d');
     
-    //window.cl(memeImg);
-    //var daWidth = memeImg.width();
-    //window.cl(daWidth);
-    
-    
     var imageObj = new Image();
     
-    imageObj.onload = function() {
+    imageObj.onload = function() { 
         var memeWidth = this.width; 
         var memeHeight = this.height;
         canvas.width  = memeWidth;
@@ -199,7 +121,6 @@ function memeIt(message, data) { //cl(sessionStorage.username);
         scroll();
     };
     imageObj.src = memeImg;
-
     
     function drawText( message1, message2, username ){
         message1 = message1.toUpperCase();

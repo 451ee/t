@@ -20,8 +20,27 @@ $(document).ready(function() {
        
         e.preventDefault(); 
         var input = $('#input'); 
-       
-        switch(input.val()) {
+        
+        // this here is way to long - anyway it looks for errors in meme input
+        var justInput = input.val();
+        var findMeme = /^m /;
+        if(findMeme.test(input.val())) { // it's a meme
+            processMessage = getMemeName(input.val());
+            var memeName = processMessage['memeName'];
+            var localMemes = new Array();
+            var i = 0;
+            $.each(window.memes, function(key, value) {
+                localMemes[i] = value.name;
+                i++;
+            });
+            var memeIndex = $.inArray(memeName, localMemes);
+            if (memeIndex === -1) { 
+                justInput = "memeError";
+            }
+        }
+
+
+        switch(justInput) {
             case '': // blank entry
                 return false;
             break;
@@ -36,6 +55,10 @@ $(document).ready(function() {
                 
 			case 'w': // print online users
                 socket.emit('getUsers');
+            break;
+
+            case 'memeError': // print online users
+                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time"></div><p id="name"><strong>Error</strong></p><p>"'+input.val()+'" - no such meme here :(</p></div>');
             break;
                 
             default: // regular text entry - pass this on
@@ -91,13 +114,12 @@ $(document).ready(function() {
                 var message = data.message;
                 
                 var findMeme = /^m /;
-                if(findMeme.test(message) || message === "m") { // it's a meme 
+                if(findMeme.test(message)) { // it's a meme 
                     memeIt(message, data);
                 }
-                else {
+                else { // it's a normal message
                     message = imageToPrint(message);
                     $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p>'+message+'</p></div>');
-                    //document.getElementById('ping1').play();
                 }
             break;
         }
@@ -152,7 +174,6 @@ $(document).ready(function() {
             return urlsToLinks(text);
         }
     }
-    
 
 });
 
