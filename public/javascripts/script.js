@@ -1,5 +1,8 @@
 // JavaScript Document
 
+//console.log("script" + window.memes);
+
+
 $(document).ready(function() { 
     
     function scroll() { $(window).scrollTop($(document).height()); } // autoscroll to bottom of page }     
@@ -150,7 +153,7 @@ $(document).ready(function() {
         }
     }
     
-            
+
 });
 
 function getTime() {
@@ -164,3 +167,7 @@ function getTime() {
 function cl(data) {
     console.log(data);
 }
+
+
+
+
