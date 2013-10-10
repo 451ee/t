@@ -52,7 +52,7 @@ var memes = [
         "message2" : "Ain't nobody got time for that", 
     },{
         "name": "boat",
-        "img" : "images/meme/boat.png",
+        "img" : "images/meme/boat.jpg",
     },{
         "name": "acc",
         "img" : "images/meme/challengeaccepted.gif",
