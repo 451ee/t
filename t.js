@@ -15,6 +15,7 @@ var express = require('express')
   , io = require('socket.io').listen(server)
   , date = new Date();
 
+// Mongo db operations
 if(conf.db.usesDb === true) {
   var ArticleProvider = require('./db').ArticleProvider
   var articleProvider = new ArticleProvider(conf.general.host, 27017)

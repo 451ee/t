@@ -144,7 +144,7 @@ function memeIt(message, data) { //cl(sessionStorage.username);
         context.drawImage(imageObj, 0, 0);
         drawText(message1, message2, data.name); // <---- 
         var img    = canvas.toDataURL("image/png");
-        $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p><img class="full" src="'+img+'" /></p></div>');
+        $("#jetzt").before('<div class="message"><img src="images/drm.jpg" class="avatar" /><div class="time">'+data.time+'</div><p class="name"><strong>'+data.name+'</strong></p><p><img class="full" src="'+img+'" /></p></div>');
         scroll();
     };
     imageObj.src = memeImg;
@@ -198,10 +198,10 @@ function memeIt(message, data) { //cl(sessionStorage.username);
             var m2cut1= message2.lastIndexOf(' ',20);
             var m2line1 = message2.substring(0, m2cut1);
             var m2line2 = message2.substring(m2cut1);
-            context.fillText(m2line1, canvas.width/2, canvas.height-25);            
-            context.strokeText(m2line1, canvas.width/2, canvas.height-25);
-            context.fillText(m2line2, canvas.width/2, canvas.height-75);            
-            context.strokeText(m2line2, canvas.width/2, canvas.height-75);
+            context.fillText(m2line1, canvas.width/2, canvas.height-75);            
+            context.strokeText(m2line1, canvas.width/2, canvas.height-75);
+            context.fillText(m2line2, canvas.width/2, canvas.height-25);            
+            context.strokeText(m2line2, canvas.width/2, canvas.height-25);
         }
         else {
             var m2cut1= message2.lastIndexOf(' ',20);
