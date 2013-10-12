@@ -34,9 +34,10 @@ $(document).ready(function() {
 	}
 	
     // Catches user submitted content from form
-	$('#send').ajaxForm(function() { 
+	//$('#send').ajaxForm(function() { 
+    $('#send').on('submit', function(e) { 
        
-        //e.preventDefault(); 
+        e.preventDefault(); 
         var input = $('#input'); 
         
         var justInput = input.val();
@@ -79,7 +80,7 @@ $(document).ready(function() {
         // following 3 lines are to be continued. look for shortcuts.js        
         //var scIndex = findShortcut(data)
         //if(scIndex != -1) cl('ping');
-        //else {} // nagu pärast swithci on
+        //else {} // as comes after switch
         
         //cl(data.time);
         

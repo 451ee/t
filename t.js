@@ -44,15 +44,23 @@ var usernames = {};
 io.sockets.on('connection', function (socket) {
     
     socket.on('news', function (data) { 
-      socket.emit('news', { message: data.text, name: data.name, time: data.time });
-      socket.broadcast.emit('news', { message: data.text, name: data.name, time: data.time });
+        socket.emit('news', { message: data.text, name: data.name, time: data.time });
+        socket.broadcast.emit('news', { message: data.text, name: data.name, time: data.time });
+        articleProvider.save({
+            title: data.text,
+            author: data.name,
+            time: data.time
+            }, function( error, docs) {
+            // error
+        });
+
      //console.log(data);
     });
     
     socket.on('adduser', function(data){ 
         socket.username = data.username; // store the username in the socket session for this client
         usernames[data.username] = data.username; // add the client's username to the global list
-        socket.emit('news', { message: 'you are connected', name: 'Server', time: data.time}); // echo to client they've connected
+        //socket.emit('news', { message: 'you are connected', name: 'Server', time: data.time}); // echo to client they've connected
         socket.broadcast.emit('news', { message: '<strong>'+data.username + '</strong> has connected', name: 'Server', time: data.time}); // echo to room  that a person has connected 
     });
     
@@ -81,21 +89,21 @@ app.get('/', function(req, res){
 app.get('/', function(req, res){
     articleProvider.findLast( function(error,docs){
         res.render('index.jade', { 
-            title: 'Blog',
+            //title: 'Blog',
             articles:docs,
             conf: conf.general
         });
     })
     //res.end();
 });
-
+/*
 app.post('/', function(req, res){
     articleProvider.save({
         title: req.param('title')
     }, function( error, docs) {
         res.redirect('/')
     });
-});
+}); */
 /*
 app.post('/', function(req, res){ console.log("tere");
     articleProvider.save({

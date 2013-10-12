@@ -50,10 +50,10 @@ html
 				div.message.hidden
 					img#avatar(src='images/drm.jpg')
 					//div#time=article.created_at
-					div#time
+					div#time=article.time
 						//-abbr.timeago(title=article.created_at.toISOString())=article.created_at.toISOString()
 					p#name
-						strong="Keegi"
+						strong=article.author
 					p=article.title
 			div.message.hidden#jetzt
 				img#avatar(src='images/drm.jpg')
