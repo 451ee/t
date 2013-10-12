@@ -89,6 +89,12 @@ app.get('/', function(req, res){
         res.end();
         })
     }
+    else {
+        res.render('index.jade', { 
+            conf: conf.general
+        });
+        //res.end();
+    }
 });
 
 server.listen(app.get('port'), function(){

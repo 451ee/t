@@ -46,13 +46,14 @@ html
 				p.
 					Buongiorno!<br />
 					<!--This is a talker without a database. <br />-->
-			- each article in articles
-				div.message.hidden
-					img.avatar(src='images/drm.jpg')
-					div.time=article.time
-					p.name
-						strong=article.author
-					p=article.title
+			- if (articles)
+				- each article in articles
+					div.message.hidden
+						img.avatar(src='images/drm.jpg')
+						div.time=article.time
+						p.name
+							strong=article.author
+						p=article.title
 			div.message.hidden#jetzt
 				img.avatar(src='images/drm.jpg')
 				form#send(method="post", action="/")

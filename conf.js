@@ -6,7 +6,7 @@ module.exports = {
       , url: 'http://127.0.0.1:3001'
     }
   , db: {
-        usesDb: false
+        usesDb: true // true - uses db, false - uses not.
       , dbName: 'talker'
       , collectionName: 'chat'
     }
