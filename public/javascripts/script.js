@@ -5,7 +5,13 @@
 
 $(document).ready(function() { 
     
-    function scroll() { $(window).scrollTop($(document).height()); } // autoscroll to bottom of page }  
+    // autoscroll to bottom of page
+    function scroll() { 
+        if (name != username) document.getElementById('ping1').play();
+        var height = $(document).height();
+        console.log(height);
+        $(window).scrollTop(height); 
+    }  
 
     // create the memes from the past
     function pastMemes(){ 
@@ -146,7 +152,9 @@ $(document).ready(function() {
             break;
         }
         if (name != data.name) document.getElementById('ping1').play();
-        $(window).scrollTop($(document).height()); // autoscroll to bottom of page     
+        //$(window).scrollTop($(document).height()); // autoscroll to bottom of page     
+        //console.log($(document).height());
+        scroll();
 
     });
     

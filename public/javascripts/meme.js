@@ -147,8 +147,8 @@ function memeIt(data) { //cl(sessionStorage.username);
         context.drawImage(imageObj, 0, 0);
         drawText(message1, message2, data.name); // <---- 
         var img    = canvas.toDataURL("image/png");
-        $("#jetzt").before('<div class="message"><img src="images/drm.jpg" class="avatar" /><div class="time">'+data.time+'</div><p class="name"><strong>'+data.name+'</strong></p><p><img class="full" src="'+img+'" /></p></div>');
-        scroll();
+        $("#jetzt").before('<div class="message"><img src="images/drm.jpg" class="avatar" /><div class="time">'+data.time+'</div><p class="name"><strong>'+data.name+'</strong></p><p><img class="full" src="'+img+'" /></p></div>'); 
+        //window.scroll();
     };
     imageObj.src = memeImg;
     
@@ -220,8 +220,8 @@ function memeIt(data) { //cl(sessionStorage.username);
             context.strokeText(m2line3, canvas.width/2, canvas.height-25);
         }
                 
-        if (name != username) document.getElementById('ping1').play();
-        scroll();
+        
+        //window.scroll();
     }    
 }    
 
