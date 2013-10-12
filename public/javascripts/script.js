@@ -34,9 +34,9 @@ $(document).ready(function() {
 	}
 	
     // Catches user submitted content from form
-    $('#send').on('submit', function(e) { 
+	$('#send').ajaxForm(function() { 
        
-        e.preventDefault(); 
+        //e.preventDefault(); 
         var input = $('#input'); 
         
         var justInput = input.val();
@@ -80,6 +80,8 @@ $(document).ready(function() {
         //var scIndex = findShortcut(data)
         //if(scIndex != -1) cl('ping');
         //else {} // nagu pärast swithci on
+        
+        //cl(data.time);
         
         switch(data.message) {
             case 'c':
@@ -186,6 +188,14 @@ $(document).ready(function() {
 // get local time
 function getTime() {
     var d = new Date();
+    var n = d.getHours();
+    var m = (d.getMinutes()<10?'0':'') + d.getMinutes();
+    var time = n+':'+m;
+    return time;
+}
+
+function printTime(time) {
+    var d = time;
     var n = d.getHours();
     var m = (d.getMinutes()<10?'0':'') + d.getMinutes();
     var time = n+':'+m;

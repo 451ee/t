@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 
+
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
@@ -13,6 +14,9 @@ var express = require('express')
 
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
+
+var ArticleProvider = require('./db').ArticleProvider;
+var articleProvider = new ArticleProvider(conf.general.host, 27017);
 
 var date = new Date();
 
@@ -42,7 +46,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('news', function (data) { 
       socket.emit('news', { message: data.text, name: data.name, time: data.time });
       socket.broadcast.emit('news', { message: data.text, name: data.name, time: data.time });
-     console.log(data);
+     //console.log(data);
     });
     
     socket.on('adduser', function(data){ 
@@ -66,12 +70,43 @@ io.sockets.on('connection', function (socket) {
 
 });
 
-
+/*
 app.get('/', function(req, res){
     res.render('index.jade', { 
         conf: conf.general
     });
 });
+*/
+
+app.get('/', function(req, res){
+    articleProvider.findLast( function(error,docs){
+        res.render('index.jade', { 
+            title: 'Blog',
+            articles:docs,
+            conf: conf.general
+        });
+    })
+    //res.end();
+});
+
+app.post('/', function(req, res){
+    articleProvider.save({
+        title: req.param('title')
+    }, function( error, docs) {
+        res.redirect('/')
+    });
+});
+/*
+app.post('/', function(req, res){ console.log("tere");
+    articleProvider.save({
+        title: req.param('title'),
+        time: req.param('time')
+    }, function( error, docs) {
+        res.redirect('/')
+    });
+    //res.end();
+});*/
+
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

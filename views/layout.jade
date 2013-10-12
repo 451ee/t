@@ -15,11 +15,7 @@ html
 		audio#ping1(preload='auto', src='/sounds/ping.mp3')        
 		script.
 			var socket = io.connect('#{conf.url}');
-		//-		meta(name='viewport', content='width=device-width,user-scalable=false;')
 		meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1')
-		//-meta(id='extViewportMeta', viewport='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no')
-		//-meta(apple-mobile-web-app-capable='yes')
-		//-meta(apple-mobile-web-app-status-bar-style='black')
 		meta(name="apple-mobile-web-app-capable", content="yes")
 		meta(name="apple-mobile-web-app-status-bar-style", content="black")
 
@@ -50,7 +46,16 @@ html
 				p.
 					Buongiorno!<br />
 					<!--This is a talker without a database. <br />-->
+			- each article in articles
+				div.message.hidden
+					img#avatar(src='images/drm.jpg')
+					//div#time=article.created_at
+					div#time
+						//-abbr.timeago(title=article.created_at.toISOString())=article.created_at.toISOString()
+					p#name
+						strong="Keegi"
+					p=article.title
 			div.message.hidden#jetzt
 				img#avatar(src='images/drm.jpg')
-				form#send
-					input#input(type='text', autocomplete='off')
+				form#send(method="post", action="/")
+					input#input(type='text', autocomplete='off', name="title")
