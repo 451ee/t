@@ -83,7 +83,6 @@ app.get('/', function(req, res){
     if(conf.db.usesDb === true) {
         articleProvider.findLast( function(error,docs){
             res.render('index.jade', { 
-                //title: 'Blog',
                 articles:docs,
                 conf: conf.general
             });

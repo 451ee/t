@@ -20,7 +20,12 @@ $(document).ready(function() {
             data.name = $(this).find("strong").html();
             data.time = $(this).find(".time").html();
             data.message = $(this).find(".content").html();
-            memeIt(data);
+            
+            var findMeme = /^m /;
+            if(findMeme.test(data.message)) { // it's a meme 
+                memeIt(data);
+            }
+            else writer(data.message, data.name, data.time);
         });    
     }
     
