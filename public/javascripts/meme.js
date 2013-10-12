@@ -63,6 +63,26 @@ var memes = [
     }
 ]
 
+function findMemeError(input) {
+    var findMeme = /^m /;
+    if(findMeme.test(input)) { // it's a meme
+        processMessage = getMemeName(input);
+        var memeName = processMessage['memeName'];
+        var localMemes = new Array();
+        var i = 0;
+        $.each(window.memes, function(key, value) {
+            localMemes[i] = value.name;
+            i++;
+        });
+        var memeIndex = $.inArray(memeName, localMemes);
+        if (memeIndex === -1) { 
+            justInput = "error";
+            return justInput;
+        }
+    }
+}
+
+
 // takes meme message and slices & returns meme name
 function getMemeName(message) {
     message = message.slice(2); // remove "m " from beginning
