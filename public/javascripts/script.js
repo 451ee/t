@@ -6,6 +6,17 @@
 $(document).ready(function() { 
     
     function scroll() { $(window).scrollTop($(document).height()); } // autoscroll to bottom of page }  
+
+    // create the memes from the past
+    function pastMemes(){ 
+        $(".past").each(function(){
+            var data = new Array();            
+            data.name = $(this).find("strong").html();
+            data.time = $(this).find(".time").html();
+            data.message = $(this).find(".content").html();
+            memeIt(data);
+        });    
+    }
     
     // print news
     function writer(message, name, time) {
@@ -14,15 +25,16 @@ $(document).ready(function() {
         $("#jetzt").before('<div class="message"><img src="images/drm.jpg" class="avatar" /><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong></p><p>'+message+'</p></div>');
     }
     
+    // print announcements
     function announcer(message) {
         message = message || '';
         $("#jetzt").before('<div class="message announce"><p>'+message+'</p>');    
     }
     
+    // print images to center
     function centerWriter(message, name, time) {
         message = message || ''; name = name || ''; time = time || '';
         $("#jetzt").before('<div class="message center"><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong> '+message+'</p></div>');
-
     }
     
 	// hold focus on the text input, unless it's the log in screen.
@@ -62,7 +74,7 @@ $(document).ready(function() {
                 socket.emit('getUsers');
             break;
 
-            case 'memeError': // print online users
+            case 'memeError': // if such meme doesn't exist
                 writer(input.val()+' - no such meme here :(', 'Error');
             break;
                 
@@ -126,7 +138,7 @@ $(document).ready(function() {
                 
                 var findMeme = /^m /;
                 if(findMeme.test(message)) { // it's a meme 
-                    memeIt(message, data);
+                    memeIt(data);
                 }
                 else { // it's a normal message
                     writer(message, data.name, data.time);
@@ -163,6 +175,7 @@ $(document).ready(function() {
 			$("#input").focus();	
 			$('#message1').hide();
             socket.emit('adduser', { username: username, time: getTime() });
+            //pastMemes();
             // sessionStorage.username = username; // this can be achieved just with using "name"
 		}
     });
@@ -195,6 +208,7 @@ function getTime() {
     return time;
 }
 
+/*
 function printTime(time) {
     var d = time;
     var n = d.getHours();
@@ -202,6 +216,7 @@ function printTime(time) {
     var time = n+':'+m;
     return time;
 }
+*/
 
 // shortcut for console.log
 function cl(data) {

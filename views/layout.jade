@@ -45,15 +45,16 @@ html
 					strong="Server"
 				p.
 					Buongiorno!<br />
-					<!--This is a talker without a database. <br />-->
 			- if (articles)
 				- each article in articles
-					div.message.hidden
+					div.message.hidden.past
 						img.avatar(src='images/drm.jpg')
 						div.time=article.time
 						p.name
 							strong=article.author
-						p=article.title
+						p.content=article.title
+			script.
+				//pastMemes();
 			div.message.hidden#jetzt
 				img.avatar(src='images/drm.jpg')
 				form#send(method="post", action="/")

@@ -97,7 +97,10 @@ function getMemeName(message) {
     return processedMessage;
 }
 
-function memeIt(message, data) { //cl(sessionStorage.username);
+function memeIt(data) { //cl(sessionStorage.username);
+    
+    //console.log(data);
+    var message = data.message;
             
     var processedMessage = getMemeName(message);
     message = processedMessage['message'];
