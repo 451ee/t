@@ -24,11 +24,22 @@ or
 4. I tend to get "node-gyp rebuild 2> builderror.log" but nevertheless the stuff seams to work
 5. go to yourdomain:3001
 
+INSTALLATION 2:
+-----------------
+0. $ npm install forever -g
+1. $ forever start t.js
+2. $ crontab -u YOURUSERNAME -e
+3. in the file write: 
+3.1 @reboot /usr/local/bin/forever start /your/path/to/your/app.js
+4. $ mongod --fork --logpath PATHTOYOURMONGOLOG/mongod.log // thisone starts mongo independently
+
+
 SETUP
 -------------
 
 1. basic configuration is in conf.js
 2. /public/stylesheets/fonts.styl - I use it to keep several installations with different fonts.
+
 
 CURRENT STATUS
 -------------
@@ -36,9 +47,10 @@ CURRENT STATUS
 Uses:
 Express, Jade and Stylus - as the base back- and frontend.
 socket.io - for connecting people.
+mongo - for database
 
-No database is currently attached.
-I kind of like the idea of a talker without a database + it makes development faster.
+//No database is currently attached.
+//I kind of like the idea of a talker without a database + it makes development faster.
 
 Usable on all screen sizes.
 Little HTML+CSS.
@@ -60,6 +72,12 @@ https://app.asana.com/-/share?s=7719476021228-pxHKCllHXsiHL17Dbn8QlqCeedhtgmC3TW
 
 UPDATES
 --------
+
+12th of Oct 2013
+Now works with MongoDb.
+
+around 10th of Oct
+Now supports memeing
 
 5th of Oct 2013
 Now detects width for Android devices.

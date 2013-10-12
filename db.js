@@ -3,8 +3,7 @@
  * 
  */
 
-var databaseName = 'test1';
-var collectionName = 'articles';
+var conf = require('./conf');
 
 var Db = require('mongodb').Db;
 var Connection = require('mongodb').Connection;
@@ -13,13 +12,13 @@ var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
 ArticleProvider = function(host, port) {
-  this.db= new Db(databaseName, new Server(host, port, {auto_reconnect: true}, {}));
+  this.db= new Db(conf.db.dbName, new Server(host, port, {auto_reconnect: true}, {}));
   this.db.open(function(){});
 };
 
 
 ArticleProvider.prototype.getCollection= function(callback) {
-  this.db.collection(collectionName, function(error, article_collection) {
+  this.db.collection(conf.db.collectionName, function(error, article_collection) {
     if( error ) callback(error);
     else callback(null, article_collection);
   });

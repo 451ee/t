@@ -10,15 +10,13 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , conf = require('./conf')
-  , app = express();
+  , app = express()
+  , server = http.createServer(app)
+  , io = require('socket.io').listen(server)
+  , ArticleProvider = require('./db').ArticleProvider
+  , articleProvider = new ArticleProvider(conf.general.host, 27017)
+  , date = new Date();
 
-var server = http.createServer(app);
-var io = require('socket.io').listen(server);
-
-var ArticleProvider = require('./db').ArticleProvider;
-var articleProvider = new ArticleProvider(conf.general.host, 27017);
-
-var date = new Date();
 
 // all environments
 app.set('port', conf.general.port);
@@ -29,7 +27,7 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-  app.use(require('stylus').middleware(__dirname + '/public'));
+app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
@@ -50,11 +48,9 @@ io.sockets.on('connection', function (socket) {
             title: data.text,
             author: data.name,
             time: data.time
-            }, function( error, docs) {
-            // error
+            }, function(error, docs) {
+            // ERROR HANDLING
         });
-
-     //console.log(data);
     });
     
     socket.on('adduser', function(data){ 
@@ -78,14 +74,6 @@ io.sockets.on('connection', function (socket) {
 
 });
 
-/*
-app.get('/', function(req, res){
-    res.render('index.jade', { 
-        conf: conf.general
-    });
-});
-*/
-
 app.get('/', function(req, res){
     articleProvider.findLast( function(error,docs){
         res.render('index.jade', { 
@@ -93,28 +81,9 @@ app.get('/', function(req, res){
             articles:docs,
             conf: conf.general
         });
+    res.end();
     })
-    //res.end();
 });
-/*
-app.post('/', function(req, res){
-    articleProvider.save({
-        title: req.param('title')
-    }, function( error, docs) {
-        res.redirect('/')
-    });
-}); */
-/*
-app.post('/', function(req, res){ console.log("tere");
-    articleProvider.save({
-        title: req.param('title'),
-        time: req.param('time')
-    }, function( error, docs) {
-        res.redirect('/')
-    });
-    //res.end();
-});*/
-
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

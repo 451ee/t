@@ -27,7 +27,7 @@ html
 				form#login
 					input#username(type='text', value='', autocomplete='off', style='border: 1px solid #999;')
 			div.message.announce.hidden
-				div#time
+				div.time
 				p.
 					<strong>Welcome!</strong><br />
 					<strong>w</strong> - who - who is here?<br />
@@ -39,22 +39,21 @@ html
 					<strong>8</strong> - Music  <br />
 					<strong>selffive</strong> - Selffive <br />-->
 			div.message.hidden
-				img#avatar(src='images/be.png')
-				div#time
-				p#name 
+				img.avatar(src='images/be.png')
+				div.time
+				p.name 
 					strong="Server"
 				p.
 					Buongiorno!<br />
 					<!--This is a talker without a database. <br />-->
 			- each article in articles
 				div.message.hidden
-					img#avatar(src='images/drm.jpg')
-					//div#time=article.created_at
-					div#time=article.time
-					p#name
+					img.avatar(src='images/drm.jpg')
+					div.time=article.time
+					p.name
 						strong=article.author
 					p=article.title
 			div.message.hidden#jetzt
-				img#avatar(src='images/drm.jpg')
+				img.avatar(src='images/drm.jpg')
 				form#send(method="post", action="/")
 					input#input(type='text', autocomplete='off', name="title")

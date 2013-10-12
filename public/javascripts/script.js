@@ -11,7 +11,7 @@ $(document).ready(function() {
     function writer(message, name, time) {
         message = message || ''; name = name || ''; time = time || '';
         message = findLinksAndImages(message); // find links and images
-        $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+time+'</div><p id="name"><strong>'+name+'</strong></p><p>'+message+'</p></div>');
+        $("#jetzt").before('<div class="message"><img src="images/drm.jpg" class="avatar" /><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong></p><p>'+message+'</p></div>');
     }
     
     function announcer(message) {
@@ -21,7 +21,7 @@ $(document).ready(function() {
     
     function centerWriter(message, name, time) {
         message = message || ''; name = name || ''; time = time || '';
-        $("#jetzt").before('<div class="message center"><div id="time">'+time+'</div><p id="name"><strong>'+name+'</strong> '+message+'</p></div>');
+        $("#jetzt").before('<div class="message center"><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong> '+message+'</p></div>');
 
     }
     
@@ -90,35 +90,35 @@ $(document).ready(function() {
             break;
 
             case 'mybody':
-				$("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/mybody.gif" class="full" /></p></div>');
+				$("#jetzt").before('<div class="message"><div class="time">'+data.time+'</div><p class="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/mybody.gif" class="full" /></p></div>');
             break;
                 
             case 'mybody2':
-				$("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/mybody2.gif" class="full" /></p></div>');
+				$("#jetzt").before('<div class="message"><div class="time">'+data.time+'</div><p class="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/mybody2.gif" class="full" /></p></div>');
             break;
 
             case 'lol':
-				$("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/lol.gif" class="full" /></p></div>');
+				$("#jetzt").before('<div class="message"><div class="time">'+data.time+'</div><p class="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/lol.gif" class="full" /></p></div>');
             break;
 
             case 'dance':
-				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/dance.gif" /></p></div>');
+				$("#jetzt").before('<div class="message center"><div class="time">'+data.time+'</div><p class="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/dance.gif" /></p></div>');
             break;
 
             case 'selffive':
-				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img class="full" src="images/shortcuts/selffive.gif" /></p></div>');
+				$("#jetzt").before('<div class="message center"><div class="time">'+data.time+'</div><p class="name"><strong>'+data.name+'</strong></p> <img class="full" src="images/shortcuts/selffive.gif" /></p></div>');
             break;
 
             case 'i':
-				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/idea.jpeg" /></p></div>');
+				$("#jetzt").before('<div class="message center"><div class="time">'+data.time+'</div><p class="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/idea.jpeg" /></p></div>');
             break;
 
             case '8':
-				$("#jetzt").before('<div class="message center"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/note.gif" id="bubu" /></p></div>');
+				$("#jetzt").before('<div class="message center"><div class="time">'+data.time+'</div><p class="name"><strong>'+data.name+'</strong></p> <img src="images/shortcuts/note.gif" id="bubu" /></p></div>');
             break;
                 
             case 'y':
-                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" id="avatar" /><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p><p><img class="full" src="images/shortcuts/yes.jpg" /></p></div>');
+                $("#jetzt").before('<div class="message"><img src="images/drm.jpg" class="avatar" /><div class="time">'+data.time+'</div><p class="name"><strong>'+data.name+'</strong></p><p><img class="full" src="images/shortcuts/yes.jpg" /></p></div>');
             break;
 
             default: 
@@ -146,7 +146,7 @@ $(document).ready(function() {
                 allUsers = key + ', ' + allUsers;
             }
         });
-        $("#jetzt").before('<div class="message announce"><div id="time">'+getTime()+'</div><p id="name"><strong>Online users:</strong></p>'+allUsers+'<p></p></div>');
+        $("#jetzt").before('<div class="message announce"><div id="time">'+getTime()+'</div><p class="name"><strong>Online users:</strong></p>'+allUsers+'<p></p></div>');
     });
 
     
