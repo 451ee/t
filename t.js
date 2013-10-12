@@ -13,10 +13,12 @@ var express = require('express')
   , app = express()
   , server = http.createServer(app)
   , io = require('socket.io').listen(server)
-  , ArticleProvider = require('./db').ArticleProvider
-  , articleProvider = new ArticleProvider(conf.general.host, 27017)
   , date = new Date();
 
+if(conf.db.usesDb === true) {
+  var ArticleProvider = require('./db').ArticleProvider
+  var articleProvider = new ArticleProvider(conf.general.host, 27017)
+}
 
 // all environments
 app.set('port', conf.general.port);
@@ -44,13 +46,15 @@ io.sockets.on('connection', function (socket) {
     socket.on('news', function (data) { 
         socket.emit('news', { message: data.text, name: data.name, time: data.time });
         socket.broadcast.emit('news', { message: data.text, name: data.name, time: data.time });
-        articleProvider.save({
-            title: data.text,
-            author: data.name,
-            time: data.time
-            }, function(error, docs) {
-            // ERROR HANDLING
-        });
+        if(conf.db.usesDb === true) {
+            articleProvider.save({
+                title: data.text,
+                author: data.name,
+                time: data.time
+                }, function(error, docs) {
+                // ERROR HANDLING
+            });
+        }
     });
     
     socket.on('adduser', function(data){ 
@@ -75,14 +79,16 @@ io.sockets.on('connection', function (socket) {
 });
 
 app.get('/', function(req, res){
-    articleProvider.findLast( function(error,docs){
-        res.render('index.jade', { 
-            //title: 'Blog',
-            articles:docs,
-            conf: conf.general
-        });
-    res.end();
-    })
+    if(conf.db.usesDb === true) {
+        articleProvider.findLast( function(error,docs){
+            res.render('index.jade', { 
+                //title: 'Blog',
+                articles:docs,
+                conf: conf.general
+            });
+        res.end();
+        })
+    }
 });
 
 server.listen(app.get('port'), function(){

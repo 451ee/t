@@ -4,9 +4,10 @@ module.exports = {
         host: '127.0.0.1'
       , port: 3001
       , url: 'http://127.0.0.1:3001'
-    },
-    db: {
-        dbName: 'talker'
+    }
+  , db: {
+        usesDb: false
+      , dbName: 'talker'
       , collectionName: 'chat'
     }
 };
