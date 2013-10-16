@@ -48,9 +48,9 @@ $(document).ready(function() {
     }
     
     // print images to center
-    function centerWriter(message, name, time) {
+    function painter(message, name, time) { 
         message = message || ''; name = name || ''; time = time || '';
-        $("#jetzt").before('<div class="message center"><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong> '+message+'</p></div>');
+        $("#jetzt").before('<div class="message center"><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong></p><img src="images/shortcuts/'+message+'" /></div>');
     }
     
 	// hold focus on the text input, unless it's the log in screen.
@@ -109,12 +109,13 @@ $(document).ready(function() {
         //var scIndex = findShortcut(data)
         //if(scIndex != -1) cl('ping');
         //else {} // as comes after switch
+        findShortcut(data);
         
         //cl(data.time);
         
         switch(data.message) {
             case 'c':
-                centerWriter('<img src="images/shortcuts/che.png" />', data.name, data.time);
+                painter('che.png', data.name, data.time);
             break;
 
             case 'mybody':

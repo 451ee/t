@@ -2,37 +2,13 @@
 // This here is shit.
 // to be continued
 
-var shortcuts = [ 
-    {
-        "name": "c",
-        "img" : "che.png",
-    },{
-        "name": "mybody",
-        "img" : "mybody.gif",
-    },{
-        "name": "mybody2",
-        "img" : "mybody2.gif",
-    },{
-        "name": "lol",
-        "img" : "lol.gif",
-    },{
-        "name": "dance",
-        "img" : "dance.gif",
-    },{
-        "name": "selffive",
-        "img" : "selffive.gif",
-    },{
-        "name": "i",
-        "img" : "idea.jpeg",
-    },{
-        "name": "8",
-        "img" : "note.gif",
-    },{
-        "name": "y",
-        "img" : "yes.jpg",
-    }
-]
+//var shortcuts = require('./shortcuts2.js');
 
+function findShortcut(data) { 
+ window.cl(shortcuts);   
+}
+
+/*
 function findShortcut(data) { 
     input = data.message;
     cuts = new Array();
@@ -62,3 +38,4 @@ function printShortcut(data, scIndex) {
     $("#jetzt").before('<div class="message"><div id="time">'+data.time+'</div><p id="name"><strong>'+data.name+'</strong></p> <img src="/shortcuts/'+cuts[scIndex]+'" class="full" /></p></div>');
 }
 
+*/
