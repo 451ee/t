@@ -10,8 +10,8 @@
             
             <script type="text/javascript" src="javascripts/head.load.min.js"></script>
 
-            <!--<script type="text/javascript" src="javascripts/socket.io.js"></script>
-            <script type="text/javascript" src="javascripts/jquery-1.10.0.min.js"></script>
+            <script type="text/javascript" src="javascripts/socket.io.js"></script>
+            <!--<script type="text/javascript" src="javascripts/jquery-1.10.0.min.js"></script>
             <script type="text/javascript" src="javascripts/meme.js"></script>
             <script type="text/javascript" src="javascripts/shortcuts.js"></script>
             <script type="text/javascript" src="javascripts/script.js"></script>
@@ -20,20 +20,22 @@
 
             <!--<script type="text/javascript" src="javascripts/jquery.form.js"></script>-->
             <!-- SEE ON SCRIPTI JA PHONEGAPI VAHEL -->
-            
-
+            <script>
+                head.js("javascripts/socket.io.js");
+                var socket = io.connect('http://meie.tallinn.ee:3001');
+            </script>
             <audio id="ping1" preload="auto" src="sounds/ping.mp3"></audio>
             
-            <script>
-                head.js("javascripts/socket.io.js", "javascripts/jquery-1.10.0.min.js", "javascripts/meme.js", "javascripts/shortcuts.js", "javascripts/script.js", "javascripts/phonegapStuff.js");
-                var socket = io.connect('http://meie.tallinn.ee:3001');</script>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"></head><body><a href="https://github.com/451ee/t"><img id="bigFork" src="images/forkme_right_gray_6d6d6d.png" style="position: absolute; top: 0; right: 0; border: 0;" alt="Fork me on GitHub"><img id="smallFork" src="images/forkme.png" style="float: right;" alt="Fork me on GitHub"></a><div id="window"><div id="message1" class="message">Kasutajanimi:<br><form id="login"><input id="username" type="text" value="" autocomplete="off" style="border: 1px solid #999;"></form></div><div class="message announce hidden"><div class="time"></div><p><strong>Welcome!</strong><br />
 <strong>w</strong> - who - who is here?<br />
 <strong>h</strong> - help - show (this) helpscreen. <br />
 <strong>c</strong> - che cazzo - a form of Italian cursing. <br />
 <strong>m</strong> - meme - create a meme. <br />
 </p></div><div class="message hidden"><img src="images/be.png" class="avatar"><div class="time"></div><p class="name"> <strong>Server</strong></p><p>Buongiorno!<br /></p></div><div id="jetzt" class="message hidden"><img src="images/drm.jpg" class="avatar"><form id="send" method="post" action="/"><input id="input" type="text" autocomplete="off" name="title"></form></div></div>
+    <script>
+        head.js("javascripts/jquery-1.10.0.min.js", "javascripts/meme.js", "javascripts/shortcuts.js", "javascripts/script.js", "javascripts/jquery.form.js", "javascripts/phonegapStuff.js", "./javascripts/require.js");
+    </script>
+
 </body></html>
 
 

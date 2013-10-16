@@ -2,6 +2,10 @@
 
 //console.log("script" + window.memes);
 
+                //console.log(phonegapStuff.js);
+                var kala = head;
+                //cl(kala);
+
 
 $(document).ready(function() { 
     
@@ -35,6 +39,7 @@ $(document).ready(function() {
         message = findLinksAndImages(message); // find links and images
         //cl(name);
         if(name === "4m4t3ur") var avatar = "4m4t3ur.jpeg";
+        if(name === "muusa") var avatar = "muusa.jpg";
         else avatar = "drm.jpg";
         $("#jetzt").before('<div class="message"><img src="images/'+avatar+'" class="avatar" /><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong></p><p>'+message+'</p></div>');
         //makeBeep();

@@ -2,10 +2,14 @@
 // This here is shit.
 // to be continued
 
-//var shortcuts = require('./shortcuts2.js');
+head.ready(function() {
+    //var shortcuts = require('shortcuts2.js');
+    //console.log(shortcuts);
+});
+
 
 function findShortcut(data) { 
- window.cl(shortcuts);   
+ //window.cl(shortcuts);   
 }
 
 /*
