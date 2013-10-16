@@ -100,7 +100,7 @@ app.get('/', function(req, res){
 
 app.get('/', function(req, res){
   res.writeHead(200, {"Content-Type": "text/html"});
-  res.end("Hello, yes, this is server!\n<br /> Please go to <a href='www/index.html'>talker</a>");
+  res.end("Hello, yes, this is server!\n<br /> Please go to <a href='www/index.html'>talker</a>.");
 });
 
 
