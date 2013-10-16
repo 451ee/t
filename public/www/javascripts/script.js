@@ -7,9 +7,9 @@ $(document).ready(function() {
     
     // autoscroll to bottom of page
     function scroll() { 
-        if (name != username) document.getElementById('ping1').play();
+        //if (name != username) document.getElementById('ping1').play();
         var height = $(document).height();
-        console.log(height);
+        //console.log(height);
         $(window).scrollTop(height); 
     }  
 
@@ -33,7 +33,12 @@ $(document).ready(function() {
     function writer(message, name, time) {
         message = message || ''; name = name || ''; time = time || '';
         message = findLinksAndImages(message); // find links and images
-        $("#jetzt").before('<div class="message"><img src="images/drm.jpg" class="avatar" /><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong></p><p>'+message+'</p></div>');
+        //cl(name);
+        if(name === "4m4t3ur") var avatar = "4m4t3ur.jpeg";
+        else avatar = "drm.jpg";
+        $("#jetzt").before('<div class="message"><img src="images/'+avatar+'" class="avatar" /><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong></p><p>'+message+'</p></div>');
+        //makeBeep();
+        //vibrate();
     }
     
     // print announcements
@@ -156,7 +161,15 @@ $(document).ready(function() {
                 }
             break;
         }
-        if (name != data.name) document.getElementById('ping1').play();
+        
+        if (sessionStorage.username != data.name) {
+            document.getElementById('ping1').play();
+            if(deviceActive === false) {
+                makeBeep();
+                vibrate();
+            }
+
+        }
         //$(window).scrollTop($(document).height()); // autoscroll to bottom of page     
         //console.log($(document).height());
         scroll();
@@ -189,14 +202,22 @@ $(document).ready(function() {
 			$('#message1').hide();
             socket.emit('adduser', { username: username, time: getTime() });
             //pastMemes();
-            // sessionStorage.username = username; // this can be achieved just with using "name"
+            sessionStorage.username = username; // this can be achieved just with using "name"
 		}
     });
 
+    
     // automagic link creation from URLs 
     function urlsToLinks(text) {
         var exp = /(\b(https?|ftp|file|http):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;        
-        return text.replace(exp,"<a href='$1' target='_blank'>$1</a>"); 
+        var match =  text.match(exp); // address
+        
+        if(match !== null){ // is link
+            match = encodeURI(match); 
+            return "<a href='#' target='blank' onclick='window.open(&quot;"+match+"&quot;, &quot;_blank&quot;, &quot;location=yes&quot;); return false;' style='color: #0066cc; text-decoration: underline; cursor: pointer;' >"+match+"</a>";
+        } 
+        else return text;
+
     }
 
     // automagic image creation from URLs
@@ -204,7 +225,10 @@ $(document).ready(function() {
         var exp = /(\b(https?|ftp|file|http):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]+(\.jpg|\.jpeg|\.png|\.gif|\.bmp))/ig;
         var match =  text.match(exp);
         if(match !== null){ // is image
-            return text.replace(exp,"<a href='$1' target='_blank'><img class='full' src='$1' /></a>"); 
+            //return text.replace(exp,"<a href='$1' target='_blank'><img class='full' src='$1' /></a>"); 
+            match = encodeURI(match); 
+            return "<a href='#'  target='blank' onclick='window.open(&quot;"+match+"&quot;, &quot;_blank&quot;, &quot;location=yes&quot;); return false;' ><img class='full' src='"+match+"' /></a>";
+
         } 
         else { // is some other kind of link
             return urlsToLinks(text);

@@ -78,7 +78,7 @@ io.sockets.on('connection', function (socket) {
     });
 
 });
-
+/*
 app.get('/', function(req, res){
     if(conf.db.usesDb === true) {
         articleProvider.findLast( function(error,docs){
@@ -96,7 +96,7 @@ app.get('/', function(req, res){
         //res.end();
     }
 });
-
+*/
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
