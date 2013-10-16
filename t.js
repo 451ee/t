@@ -5,8 +5,8 @@
 
 
 var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
+//  , routes = require('./routes')
+//  , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
   , conf = require('./conf')
@@ -24,13 +24,13 @@ if(conf.db.usesDb === true) {
 // all environments
 app.set('port', conf.general.port);
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+//app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(require('stylus').middleware(__dirname + '/public'));
+//app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
@@ -97,6 +97,14 @@ app.get('/', function(req, res){
     }
 });
 */
+
+app.get('/', function(req, res){
+  res.writeHead(200, {"Content-Type": "text/html"});
+  res.end("Hello, yes, this is server!\n<br /> Please go to <a href='www/index.html'>talker</a>");
+});
+
+
+
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

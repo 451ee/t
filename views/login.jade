@@ -1,8 +1,0 @@
-extends index
-
-block login
-    div.message#message1 Connected to 451.ee/t<br>Username:<br>
-        form#login(method="post")
-            input#username(type='text', name='username', value='user', autocomplete='off', style='border: 1px solid #999;')
-            input#pwd(type='text', name='password', value='pass', autocomplete='off', style='border: 1px solid #999;')
-            input(type='submit')
