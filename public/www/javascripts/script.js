@@ -2,6 +2,110 @@
 
 $(document).ready(function() { 
 
+    
+    // hold focus on the text input, unless it's the log in screen.
+	if ($("#username").is(":visible")) {
+		$("#username").focus();			
+	}
+	else {
+		$("#input").focus();			
+	}
+
+    //Catches info from user login box
+    $('#login').on('submit', function(e) { 
+
+        e.preventDefault();         
+        var username = $('#username');
+		username = username.val(); 
+		name = String(username); //cl (username);
+				
+		if (username) { 
+			$('.message').show();
+			$("#input").focus();	
+			$('#message1').hide();
+            socket.emit('adduser', { username: username, time: getTime() });
+            //pastMemes();
+            sessionStorage.username = username; // this can be achieved just with using "name"
+		}
+    });
+    
+    
+    /* CATCH CONTENT FROM FORM */
+    $('#send').on('submit', function(e) { 
+       
+        e.preventDefault(); 
+        
+        var input = $('#input'); 
+        var message = input.val();
+        
+        // get the first word
+        if (message === '') return false;
+        message = message.trim(); 
+        if(message.indexOf(" ") != -1) var firstWord = message.slice(0, message.indexOf(" "));
+        else var firstWord = message;
+        
+        // is it a shortcut?
+        if(firstWord in shortcuts) { 
+            
+            // is it a meme?
+            // is it a meme with a typo?
+            if(findMemeError(message) === "error") { 
+                var data = new Array; 
+                data.message = '<strong>'+input.val()+'</strong> - no such meme here :(';
+                input.val('');
+                data.name = "Server";
+                data.time = getTime();
+                writer(data);
+            } // it's no meme, pass it on
+            else if(findMemeError(message) === "noMeme"){ 
+                if(message === "m") {
+                    announcer('<strong>Meme it, bitch!</strong><br /><br /><strong>usage: <br /></strong>m fwp<br>m fwp text to top / text to bottom<br>m fwp text to top<br>m fwp / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m bru</strong> - bottom text: "IMPOSSIBRU!!"<br /><strong>m baby</strong> - SuccessBaby<br /><strong>m yuno</strong> - Y U No?<br /><strong>m goodguy</strong> - Good Guy Greg<br /><strong>m man</strong> - Most interesting guy on earth<br /><strong>m simply</strong> - top text: "One does not simply"<br /><strong>m whatif</strong> - top text: "What if I told you?"<br /><strong>m scumb</strong> - Scumbag Steve<br /><strong>m scumg</strong> - Scumbag Stacy<br /><strong>m gf</strong> - Overly attached girlfriend<br /><strong>m fuckme</strong> - bottom text: "Fuck me, right?" <br /><strong>m nobody</strong> - Bottom text: "Ain&quot;t nobody got time for that"<br /><strong>m fa</strong> - Forever alone <br /><strong>m boat</strong> - I should buy a boat cat <br /><strong>m acc</strong> - top text: "challegne accepted" <br />');                
+                }
+                else {
+                    var channel = shortcuts[firstWord].channel;
+                    socket.emit(channel, { text: message, name: sessionStorage.username, time: getTime() });
+                }
+            } // it's a meme!
+            else {  
+                var data = new Array; 
+                data.message = input.val();
+                data.name = "Server";
+                data.time = getTime();
+                memeIt(data);
+            }
+        }
+        
+        else { // if no shortcut, send it to the wire
+            //console.log("läheb");
+            socket.emit('news', { text: message, name: sessionStorage.username, time: getTime() });
+        }
+     
+        input.val(''); // clear the text input. Or should it be - reset form?
+    });
+    
+
+    
+    /* PROCESS SERVER RESPONSES */
+    socket.on('paint', function (data) { 
+        painter(data);
+    });
+
+    
+    socket.on('who', function (data) { 
+        printWho(data);
+    });
+
+    socket.on('help', function (data) { 
+        printHelp();
+    });
+
+    socket.on('news', function (data) { 
+        writer(data);
+    });
+    
+
+
+    
     /* PRINT TEMPLATES */
     // print news
     function writer(data) { 
@@ -39,156 +143,10 @@ $(document).ready(function() {
     function printHelp() { 
         announcer('<strong>w</strong> - who - who is here<br><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <!--<br><strong>y</strong> - yes - success baby --><br><strong>m</strong> - meme - create a meme <br>');
         scroll();
-    }
-
-
-
-
-    
-    // hold focus on the text input, unless it's the log in screen.
-	if ($("#username").is(":visible")) {
-		$("#username").focus();			
-	}
-	else {
-		$("#input").focus();			
-	}
-    	
-    // Catches user submitted content from form
-    $('#send').on('submit', function(e) { 
-       
-        e.preventDefault(); 
-        
-        var input = $('#input'); 
-        var message = input.val();
-        
-        // get the first word
-        if (message === '') return false;
-        message = message.trim(); 
-        if(message.indexOf(" ") != -1) var firstWord = message.slice(0, message.indexOf(" "));
-        else var firstWord = message;
-        
-        // is it a shortcut?
-        if(firstWord in shortcuts) { 
-            
-            // is it a meme?
-            // is it a meme with a typo?
-            if(findMemeError(message) === "error") { 
-                var data = new Array; 
-                data.message = '<strong>'+input.val()+'</strong> - no such meme here :(';
-                data.name = "Server";
-                data.time = getTime();
-                writer(data);
-            } // it's no meme, pass it on
-            else if(findMemeError(message) === "noMeme"){ 
-                var channel = shortcuts[firstWord].channel;
-                socket.emit(channel, { text: message, name: sessionStorage.username, time: getTime() });
-            } // it's a meme!
-            else {  
-                var data = new Array; 
-                data.message = input.val();
-                data.name = "Server";
-                data.time = getTime();
-                memeIt(data);
-                                
-            }
-        }
-        
-        else { // if no shortcut, send it to the wire
-            //console.log("läheb");
-            socket.emit('news', { text: message, name: sessionStorage.username, time: getTime() });
-        }
-     
-        input.val(''); // clear the text input. Or should it be - reset form?
-        
-    });
-
-
-
-
-
-    socket.on('paint', function (data) { 
-        painter(data);
-    });
-
-    
-    socket.on('who', function (data) { 
-        printWho(data);
-    });
-
-    socket.on('help', function (data) { 
-        printHelp();
-    });
-
-    socket.on('news', function (data) { 
-        writer(data);
-    });
+    }    
     
     
-
-
-
-
     
-    
-    // catches responses from server and prints them to user.
-    /*
-    socket.on('news', function (data) { 
-        
-        writer(data.message, data.name, data.time);
-    
-        /*
-        var message = data.message;
-        
-        var findMeme = /^m /;
-        if(findMeme.test(message)) { // it's a meme 
-            memeIt(data);
-        }
-        else { // it's a normal message
-            writer(message, data.name, data.time);
-        } 
-        
-        
-        if (sessionStorage.username != data.name) {
-            document.getElementById('ping1').play();
-            if(deviceActive === false) {
-                makeBeep();
-                vibrate();
-            }
-
-        }
-        scroll();
-    });
-    */
-    
-    // catches getUsers response from the server
-    /*socket.on('getUsers', function (data) { 
-        var allUsers = []; 
-        $.each(data, function(key, value) {
-            if(allUsers != 'undefined'){
-                allUsers = key + ', ' + allUsers;
-            }
-        });
-        $("#jetzt").before('<div class="message announce"><div id="time">'+getTime()+'</div><p class="name"><strong>Online users:</strong></p>'+allUsers+'<p></p></div>');
-    }); */
-
-    
-    //Catches info from user login box
-    $('#login').on('submit', function(e) { 
-
-        e.preventDefault();         
-        var username = $('#username');
-		username = username.val(); 
-		name = String(username); //cl (username);
-				
-		if (username) { 
-			$('.message').show();
-			$("#input").focus();	
-			$('#message1').hide();
-            socket.emit('adduser', { username: username, time: getTime() });
-            //pastMemes();
-            sessionStorage.username = username; // this can be achieved just with using "name"
-		}
-    });
 
     
     // automagic link creation from URLs 
@@ -212,7 +170,6 @@ $(document).ready(function() {
             //return text.replace(exp,"<a href='$1' target='_blank'><img class='full' src='$1' /></a>"); 
             match = encodeURI(match); 
             return "<a href='#'  target='blank' onclick='window.open(&quot;"+match+"&quot;, &quot;_blank&quot;, &quot;location=yes&quot;); return false;' ><img class='full' src='"+match+"' /></a>";
-
         } 
         else { // is some other kind of link
             return urlsToLinks(text);
@@ -249,16 +206,6 @@ function getTime() {
     return time;
 }
 
-/*
-function printTime(time) {
-    var d = time;
-    var n = d.getHours();
-    var m = (d.getMinutes()<10?'0':'') + d.getMinutes();
-    var time = n+':'+m;
-    return time;
-}
-*/
-
 // shortcut for console.log
 function cl(data) {
     console.log(data);
@@ -286,21 +233,3 @@ function getAvatar(name){
     return avatar;
 }
     
-
-
-/*    // create the memes from the past
-    function pastMemes(){ 
-        $(".past").each(function(){
-            var data = new Array();            
-            data.name = $(this).find("strong").html();
-            data.time = $(this).find(".time").html();
-            data.message = $(this).find(".content").html();
-            
-            var findMeme = /^m /;
-            if(findMeme.test(data.message)) { // it's a meme 
-                memeIt(data);
-            }
-            else writer(data.message, data.name, data.time);
-        });    
-    }
-*/

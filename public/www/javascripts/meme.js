@@ -128,11 +128,11 @@ var memes = [
     }
 ]
 
-function findMemeError(input) {
+function findMemeError(input) { 
     var findMeme = /^m /;
     if(findMeme.test(input)) { // it's a meme
         processMessage = getMemeName(input);
-        var memeName = processMessage['memeName'];
+        var memeName = processMessage['memeName']; //cl(processMessage);
         var localMemes = new Array();
         var i = 0;
         $.each(window.memes, function(key, value) {
@@ -140,12 +140,12 @@ function findMemeError(input) {
             i++;
         });
         var memeIndex = $.inArray(memeName, localMemes);
-        if (memeIndex === -1) { 
+        if (memeIndex === -1) { // it's a meme with a typo
             justInput = "error";
             return justInput;
         }
     }
-    else {
+    else { // it ain't no meme
         return "noMeme";
     }
 }
@@ -154,13 +154,15 @@ function findMemeError(input) {
 // takes meme message and slices & returns meme name
 function getMemeName(message) {
     message = message.slice(2); // remove "m " from beginning
+    
+    if(message.length === 0) 
     if(message.indexOf(" ") != -1) var memeName = message.slice(0, message.indexOf(" ")); // get the meme name (if the text fields are not empty)
     
     message = message.slice(message.indexOf(" ")+1); // remove the meme name
     if(memeName === undefined) var memeName = message; // that's in case "m fwp", but messes up "m fwp tere".
 
     var processedMessage = new Array();
-    processedMessage['memeName'] = memeName;
+    processedMessage['memeName'] = memeName; cl(memeName);
     processedMessage['message'] = message;
     return processedMessage;
 }
