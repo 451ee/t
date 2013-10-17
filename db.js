@@ -36,10 +36,10 @@ ArticleProvider.prototype.findLast = function(callback) {
     });
 };
 
-ArticleProvider.prototype.save = function(articles, callback) { 
+ArticleProvider.prototype.save = function(articles, callback) {  
     this.getCollection(function(error, article_collection) {
       if( error ) callback(error)
-      else { 
+      else {
         if( typeof(articles.length)=="undefined")
           articles = [articles];
 

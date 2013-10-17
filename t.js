@@ -16,7 +16,7 @@ var express = require('express')
   , date = new Date();
 
 // Mongo db operations
-if(conf.db.usesDb === true) {
+if(conf.db.usesDb === true) { 
   var ArticleProvider = require('./db').ArticleProvider;
   var articleProvider = new ArticleProvider(conf.general.host, 27017)
 }
@@ -47,7 +47,6 @@ function saveToDb(message, name, time) {
         author: name,
         time: time
         }, function(error, docs) {
-            console.log("ERROR in save to db");
         // ERROR HANDLING
     });
 }
@@ -71,6 +70,14 @@ io.sockets.on('connection', function (socket) {
         }
     });
 
+    socket.on('meme', function (data) { 
+        socket.emit('meme', { message: data.text, name: data.name, time: data.time });
+        socket.broadcast.emit('meme', { message: data.text, name: data.name, time: data.time });
+        if(conf.db.usesDb === true) {
+            saveToDb(data.text, data.name, data.time);
+        }
+    });
+    
     socket.on('who', function (data) { 
         socket.emit('who', usernames);
     });
@@ -79,15 +86,23 @@ io.sockets.on('connection', function (socket) {
     socket.on('help', function () { 
         socket.emit('help');
     });
-
+    
+    socket.on('last', function () { 
+        articleProvider.findLast( function(error,docs){
+            socket.emit('last', docs);
+        })
+    });    
     
     socket.on('adduser', function(data){
         socket.username = data.username; // store the username in the socket session for this client
         usernames[data.username] = data.username; // add the client's username to the global list
+        socket.broadcast.emit('news', { message: '<strong>'+data.username + '</strong> has connected', name: 'Server', time: data.time}); // echo to room  that a person has connected 
         socket.emit('help');
         socket.emit('news', { message: 'Buongiorno! You are connected', name: 'Server', time: data.time}); // echo to client they've connected
         socket.emit('who', usernames);
-        socket.broadcast.emit('news', { message: '<strong>'+data.username + '</strong> has connected', name: 'Server', time: data.time}); // echo to room  that a person has connected 
+        articleProvider.findLast( function(error,docs){
+            socket.emit('last', docs);
+        })
     });
     /*
     socket.on('getUsers', function(){

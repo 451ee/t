@@ -71,7 +71,7 @@ $(document).ready(function() {
                 data.message = input.val();
                 data.name = "Server";
                 data.time = getTime();
-                memeIt(data);
+                socket.emit("meme", { text: message, name: sessionStorage.username, time: getTime() });
             }
         }
         
@@ -87,9 +87,12 @@ $(document).ready(function() {
     
     /* PROCESS SERVER RESPONSES */
     socket.on('paint', function (data) { 
-        painter(data);
+        paint(data);
     });
 
+    socket.on('meme', function (data) { 
+        memeIt(data);
+    });    
     
     socket.on('who', function (data) { 
         printWho(data);
@@ -101,6 +104,10 @@ $(document).ready(function() {
 
     socket.on('news', function (data) { 
         writer(data);
+    });
+
+    socket.on('last', function (data) { 
+        serialWriter(data);
     });
     
 
@@ -124,7 +131,7 @@ $(document).ready(function() {
         $("#jetzt").before('<div class="message announce"><p>'+message+'</p>');    
     }
 
-    function painter(data) { 
+    function paint(data) { 
         message = data.message || ''; name = data.name || ''; time = data.time || '';
         $("#jetzt").before('<div class="message center"><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong></p><img src="images/shortcuts/'+shortcuts[data.message].img+'" /></div>');
         scrollAndBeep(data);
@@ -145,9 +152,36 @@ $(document).ready(function() {
         scroll();
     }    
     
-    
-    
 
+    function serialWriter(data) { 
+        var singleMessage = Array();
+        $.each(data, function(key, value) {
+            singleMessage.message = value.title; 
+            singleMessage.name = value.author; 
+            singleMessage.time = value.time;
+
+            // get the first word
+            if(singleMessage.message.indexOf(" ") != -1) var firstWord = singleMessage.message.slice(0, singleMessage.message.indexOf(" "));
+            else var firstWord = singleMessage.message;
+            
+            // is it a shortcut?
+            if(firstWord in shortcuts) { 
+                // it's a shortcut but no meme
+                if(findMemeError(singleMessage.message) === "noMeme" || findMemeError(singleMessage.message) === "error"){ 
+                    // well hello there
+                    // hardcode often?
+                    paint(singleMessage);
+                } // it's a meme!
+                else {  
+                    memeIt(singleMessage);
+                }
+            }
+            else { // if no shortcut, send it to the wire
+                writer(singleMessage);
+            }
+        });
+        delete singleMessage;
+    }
     
     // automagic link creation from URLs 
     function urlsToLinks(text) {
