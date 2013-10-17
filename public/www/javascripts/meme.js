@@ -1,4 +1,5 @@
-
+/*
+// to be continued
 var memes2 = Array();
 memes2 = {
     "fwp":{
@@ -59,7 +60,7 @@ memes2 = {
         "message1" : "challenge accepted", 
     },
 }
-
+*/
 
 
 
@@ -286,7 +287,6 @@ function memeIt(data) { //cl(sessionStorage.username);
             context.fillText(m2line3, canvas.width/2, canvas.height-25);            
             context.strokeText(m2line3, canvas.width/2, canvas.height-25);
         }
-                
         
         //window.scroll();
     }    

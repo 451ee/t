@@ -2,10 +2,7 @@
 
 $(document).ready(function() { 
 
-    
-    
-    
-
+    /* PRINT TEMPLATES */
     // print news
     function writer(data) { 
         message = data.message || ''; name = data.name || ''; time = data.time || '';
@@ -72,12 +69,27 @@ $(document).ready(function() {
         
         // is it a shortcut?
         if(firstWord in shortcuts) { 
-            // send the data to corresponding channel: paint, meme, who, help, last.
-            if(findMemeError(message) === "error") { cl("error");}
-            else if(findMemeError(message) === "noMeme"){ cl("nomeme");}
-            else {                
+            
+            // is it a meme?
+            // is it a meme with a typo?
+            if(findMemeError(message) === "error") { 
+                var data = new Array; 
+                data.message = '<strong>'+input.val()+'</strong> - no such meme here :(';
+                data.name = "Server";
+                data.time = getTime();
+                writer(data);
+            } // it's no meme, pass it on
+            else if(findMemeError(message) === "noMeme"){ 
                 var channel = shortcuts[firstWord].channel;
                 socket.emit(channel, { text: message, name: sessionStorage.username, time: getTime() });
+            } // it's a meme!
+            else {  
+                var data = new Array; 
+                data.message = input.val();
+                data.name = "Server";
+                data.time = getTime();
+                memeIt(data);
+                                
             }
         }
         
