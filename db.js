@@ -48,7 +48,7 @@ ArticleProvider.prototype.save = function(articles, callback) {
           //article.created_at = new Date();
         }
 
-        article_collection.insert(articles, function() {
+        article_collection.insert(articles, function() { 
           callback(null, articles);
         });
       }

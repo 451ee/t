@@ -63,10 +63,34 @@ $(document).ready(function() {
     }
     
     // print images to center
-    function painter(message, name, time) { 
+    /*function painter(message, name, time) { 
         message = message || ''; name = name || ''; time = time || '';
         $("#jetzt").before('<div class="message center"><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong></p><img src="images/shortcuts/'+message+'" /></div>');
+    }*/
+
+    function painter(data) { 
+        message = data.message || ''; name = data.name || ''; time = data.time || '';
+        $("#jetzt").before('<div class="message center"><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong></p><img src="images/shortcuts/'+shortcuts[data.message].img+'" /></div>');
     }
+    
+    function printWho(data){
+        var allUsers = []; 
+        $.each(data, function(key, value) {
+            if(allUsers != 'undefined'){
+                allUsers = key + ', ' + allUsers;
+            }
+        });
+        $("#jetzt").before('<div class="message announce"><div id="time">'+getTime()+'</div><p class="name"><strong>Online users:</strong></p>'+allUsers+'<p></p></div>');
+    }
+
+    function printHelp() { 
+        announcer('<strong>w</strong> - who - who is here<br><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <!--<br><strong>y</strong> - yes - success baby --><br><strong>m</strong> - meme - create a meme <br>');
+    }
+
+    
+    
+    //painter(data.message, data.name, data.time); 
+    
     
 	// hold focus on the text input, unless it's the log in screen.
 	if ($("#username").is(":visible")) {
@@ -81,9 +105,31 @@ $(document).ready(function() {
     $('#send').on('submit', function(e) { 
        
         e.preventDefault(); 
-        var input = $('#input'); 
         
-        findPatterns(input.val());
+        var input = $('#input'); 
+        var message = input.val();
+        
+        // get the first word
+        if (message === '') return false;
+        message = message.trim(); 
+        if(message.indexOf(" ") != -1) var firstWord = message.slice(0, message.indexOf(" "));
+        else var firstWord = message;
+        
+        // is it a shortcut?
+        if(firstWord in shortcuts) { 
+            
+            // send the data to corresponding channel: paint, meme, who, help, last.
+            var channel = shortcuts[firstWord].channel;
+            socket.emit(channel, { text: message, name: sessionStorage.username, time: getTime() });
+        }
+        
+        else { // if no shortcut, send it to the wire
+            socket.emit('news', { text: message, name: sessionStorage.username, time: getTime() });
+        }
+        
+        
+        
+        /*
         
         var justInput = input.val();
         
@@ -112,13 +158,36 @@ $(document).ready(function() {
             break;
                 
             default: // regular text entry - pass this on
-                socket.emit('news', { text: input.val(), name: name, time: getTime() });
+               // socket.emit('news', { text: input.val(), name: name, time: getTime() });
             break;
-        }
+        } */
  
         input.val(''); // clear the text input. Or should it be - reset form?
     });
 
+
+
+
+
+    socket.on('paint', function (data) { 
+        painter(data);
+    });
+
+    
+    socket.on('who', function (data) { 
+        printWho(data);
+    });
+
+    socket.on('help', function (data) { 
+        printHelp();
+    });
+    
+
+
+
+
+    
+    
     // catches responses from server and prints them to user.
     socket.on('news', function (data) { 
         
@@ -132,7 +201,7 @@ $(document).ready(function() {
         
         switch(data.message) {
             case 'c':
-                painter('che.png', data.name, data.time);
+                //painter('che.png', data.name, data.time);
             break;
 
             case 'mybody':
@@ -195,7 +264,7 @@ $(document).ready(function() {
     });
     
     // catches getUsers response from the server
-    socket.on('getUsers', function (data) { 
+    /*socket.on('getUsers', function (data) { 
         var allUsers = []; 
         $.each(data, function(key, value) {
             if(allUsers != 'undefined'){
@@ -203,7 +272,7 @@ $(document).ready(function() {
             }
         });
         $("#jetzt").before('<div class="message announce"><div id="time">'+getTime()+'</div><p class="name"><strong>Online users:</strong></p>'+allUsers+'<p></p></div>');
-    });
+    }); */
 
     
     //Catches info from user login box

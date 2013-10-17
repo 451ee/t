@@ -17,7 +17,7 @@ var express = require('express')
 
 // Mongo db operations
 if(conf.db.usesDb === true) {
-  var ArticleProvider = require('./db').ArticleProvider
+  var ArticleProvider = require('./db').ArticleProvider;
   var articleProvider = new ArticleProvider(conf.general.host, 27017)
 }
 
@@ -41,6 +41,17 @@ if ('development' == app.get('env')) {
 // usernames which are currently connected to the chat
 var usernames = {};
 
+function saveToDb(message, name, time) {
+    articleProvider.save({
+        title: message,
+        author: name,
+        time: time
+        }, function(error, docs) {
+            console.log("ERROR in save to db");
+        // ERROR HANDLING
+    });
+}
+
 // socket
 io.sockets.on('connection', function (socket) {
     
@@ -48,15 +59,26 @@ io.sockets.on('connection', function (socket) {
         socket.emit('news', { message: data.text, name: data.name, time: data.time });
         socket.broadcast.emit('news', { message: data.text, name: data.name, time: data.time });
         if(conf.db.usesDb === true) {
-            articleProvider.save({
-                title: data.text,
-                author: data.name,
-                time: data.time
-                }, function(error, docs) {
-                // ERROR HANDLING
-            });
+            saveToDb(data.text, data.name, data.time);
         }
     });
+
+    socket.on('paint', function (data) { 
+        socket.emit('paint', { message: data.text, name: data.name, time: data.time });
+        socket.broadcast.emit('paint', { message: data.text, name: data.name, time: data.time });
+        if(conf.db.usesDb === true) {
+            saveToDb(data.text, data.name, data.time);
+        }
+    });
+
+    socket.on('who', function (data) { 
+        socket.emit('who', usernames);
+    });
+
+    socket.on('help', function () { 
+        socket.emit('help');
+    });
+
     
     socket.on('adduser', function(data){ 
         socket.username = data.username; // store the username in the socket session for this client
@@ -64,11 +86,12 @@ io.sockets.on('connection', function (socket) {
         //socket.emit('news', { message: 'you are connected', name: 'Server', time: data.time}); // echo to client they've connected
         socket.broadcast.emit('news', { message: '<strong>'+data.username + '</strong> has connected', name: 'Server', time: data.time}); // echo to room  that a person has connected 
     });
-    
+    /*
     socket.on('getUsers', function(){
         // update list of users in chat, client-side
         socket.emit('getUsers', usernames);
-    });    
+    });
+*/    
     
     socket.on('disconnect', function(){
         // remove the username from global usernames list
