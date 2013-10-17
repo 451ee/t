@@ -155,14 +155,13 @@ function findMemeError(input) {
 function getMemeName(message) {
     message = message.slice(2); // remove "m " from beginning
     
-    if(message.length === 0) 
     if(message.indexOf(" ") != -1) var memeName = message.slice(0, message.indexOf(" ")); // get the meme name (if the text fields are not empty)
     
     message = message.slice(message.indexOf(" ")+1); // remove the meme name
     if(memeName === undefined) var memeName = message; // that's in case "m fwp", but messes up "m fwp tere".
 
     var processedMessage = new Array();
-    processedMessage['memeName'] = memeName; cl(memeName);
+    processedMessage['memeName'] = memeName; 
     processedMessage['message'] = message;
     return processedMessage;
 }
