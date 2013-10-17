@@ -61,12 +61,6 @@ $(document).ready(function() {
         message = message || '';
         $("#jetzt").before('<div class="message announce"><p>'+message+'</p>');    
     }
-    
-    // print images to center
-    /*function painter(message, name, time) { 
-        message = message || ''; name = name || ''; time = time || '';
-        $("#jetzt").before('<div class="message center"><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong></p><img src="images/shortcuts/'+message+'" /></div>');
-    }*/
 
     function painter(data) { 
         message = data.message || ''; name = data.name || ''; time = data.time || '';
@@ -87,9 +81,7 @@ $(document).ready(function() {
         announcer('<strong>w</strong> - who - who is here<br><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <!--<br><strong>y</strong> - yes - success baby --><br><strong>m</strong> - meme - create a meme <br>');
     }
 
-    
-    
-    //painter(data.message, data.name, data.time); 
+
     
     
 	// hold focus on the text input, unless it's the log in screen.
@@ -101,7 +93,6 @@ $(document).ready(function() {
 	}
 	
     // Catches user submitted content from form
-	//$('#send').ajaxForm(function() { 
     $('#send').on('submit', function(e) { 
        
         e.preventDefault(); 
@@ -117,7 +108,6 @@ $(document).ready(function() {
         
         // is it a shortcut?
         if(firstWord in shortcuts) { 
-            
             // send the data to corresponding channel: paint, meme, who, help, last.
             var channel = shortcuts[firstWord].channel;
             socket.emit(channel, { text: message, name: sessionStorage.username, time: getTime() });
@@ -126,42 +116,7 @@ $(document).ready(function() {
         else { // if no shortcut, send it to the wire
             socket.emit('news', { text: message, name: sessionStorage.username, time: getTime() });
         }
-        
-        
-        
-        /*
-        
-        var justInput = input.val();
-        
-        // check for errors
-        if(findMemeError(input.val())==='error') justInput = "memeError";
-
-        switch(justInput) {
-            case '': // blank entry
-                return false;
-            break;
-
-            case 'h': // print help screen 
-                announcer('<strong>w</strong> - who - who is here<br><strong>h</strong> - help - show this helpscreen here<br><strong>c</strong> - che cazzo - curse in Italian <!--<br><strong>y</strong> - yes - success baby --><br><strong>m</strong> - meme - create a meme <br>');
-			break;
-                
-            case 'm': // print help screen for memeing   
-                announcer('<strong>Meme it, bitch!</strong><br /><br /><strong>usage: <br /></strong>m fwp<br>m fwp text to top / text to bottom<br>m fwp text to top<br>m fwp / text to bottom<br><br><strong>Available memes:</strong><br /><strong>m fwp</strong> - First World Problem<br><strong>m bru</strong> - bottom text: "IMPOSSIBRU!!"<br /><strong>m baby</strong> - SuccessBaby<br /><strong>m yuno</strong> - Y U No?<br /><strong>m goodguy</strong> - Good Guy Greg<br /><strong>m man</strong> - Most interesting guy on earth<br /><strong>m simply</strong> - top text: "One does not simply"<br /><strong>m whatif</strong> - top text: "What if I told you?"<br /><strong>m scumb</strong> - Scumbag Steve<br /><strong>m scumg</strong> - Scumbag Stacy<br /><strong>m gf</strong> - Overly attached girlfriend<br /><strong>m fuckme</strong> - bottom text: "Fuck me, right?" <br /><strong>m nobody</strong> - Bottom text: "Ain&quot;t nobody got time for that"<br /><strong>m fa</strong> - Forever alone <br /><strong>m boat</strong> - I should buy a boat cat <br /><strong>m acc</strong> - top text: "challegne accepted" <br />');
-            break;
-                
-			case 'w': // print online users
-                socket.emit('getUsers');
-            break;
-
-            case 'memeError': // if such meme doesn't exist
-                writer(input.val()+' - no such meme here :(', 'Error');
-            break;
-                
-            default: // regular text entry - pass this on
-               // socket.emit('news', { text: input.val(), name: name, time: getTime() });
-            break;
-        } */
- 
+     
         input.val(''); // clear the text input. Or should it be - reset form?
     });
 
