@@ -3,7 +3,7 @@
 //console.log("script" + window.memes);
 
                 //console.log(phonegapStuff.js);
-                var kala = head;
+                //var kala = head;
                 //cl(kala);
 
 
@@ -37,10 +37,20 @@ $(document).ready(function() {
     function writer(message, name, time) {
         message = message || ''; name = name || ''; time = time || '';
         message = findLinksAndImages(message); // find links and images
-        //cl(name);
-        if(name === "4m4t3ur") var avatar = "4m4t3ur.jpeg";
-        if(name === "muusa") var avatar = "muusa.jpg";
-        else avatar = "drm.jpg";
+        var avatar = '';
+        switch(name) {
+            case "4m4t3ur":
+            avatar = "4m4t3ur.jpeg";
+            break;
+                
+            case "muusa":
+            avatar = "muusa.jpg";
+            break;
+            
+            default:
+            avatar = "drm.jpg";
+            break;
+        }
         $("#jetzt").before('<div class="message"><img src="images/'+avatar+'" class="avatar" /><div class="time">'+time+'</div><p class="name"><strong>'+name+'</strong></p><p>'+message+'</p></div>');
         //makeBeep();
         //vibrate();
@@ -72,6 +82,8 @@ $(document).ready(function() {
        
         e.preventDefault(); 
         var input = $('#input'); 
+        
+        findPatterns(input.val());
         
         var justInput = input.val();
         

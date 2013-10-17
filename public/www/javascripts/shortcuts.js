@@ -2,14 +2,56 @@
 // This here is shit.
 // to be continued
 
-head.ready(function() {
-    //var shortcuts = require('shortcuts2.js');
-    //console.log(shortcuts);
-});
+var shortcuts = Array();
 
+shortcuts = {
+    "c":{
+        "img" : "c.png",
+        "sample":"sample" 
+    },
+    "mybody":{ 
+        "img" : "mybody.gif" 
+    },
+    "mybody2":{ 
+        "img" : "mybody2.gif" 
+    },
+    "lol":{ 
+        "img" : "lol.gif" 
+    },
+    "dance":{ 
+        "img" : "dance.gif" 
+    },
+    "selffive":{ 
+        "img" : "selffive.gif" 
+    },
+    "i":{ 
+        "img" : "idea.jpeg" 
+    },
+    "8":{ 
+        "img" : "note.gif" 
+    },
+    "y":{ 
+        "img" : "yes.jpg" 
+    },
+    "m":{ 
+        "function":"meme" 
+    },
+}
+
+//console.log(shortcuts.dance.img);
+
+
+function findPatterns(message) {
+    if (message === '') return false;
+    message = message.trim(); 
+    if(message.indexOf(" ") != -1) var firstWord = message.slice(0, message.indexOf(" "));
+    else var firstWord = message;
+    console.log(firstWord);
+}
 
 function findShortcut(data) { 
- //window.cl(shortcuts);   
+    //console.log(data.message);
+    return data;
 }
 
 /*

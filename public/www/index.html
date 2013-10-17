@@ -11,7 +11,9 @@
             <script type="text/javascript" src="javascripts/head.load.min.js"></script>
 
             <script type="text/javascript" src="javascripts/socket.io.js"></script>
-            <!--<script type="text/javascript" src="javascripts/jquery-1.10.0.min.js"></script>
+            <script type="text/javascript" src="phonegap.js"></script>
+            <!--<script type="text/javascript" src="javascripts/phonegapStuff.js"></script>
+            <script type="text/javascript" src="javascripts/jquery-1.10.0.min.js"></script>
             <script type="text/javascript" src="javascripts/meme.js"></script>
             <script type="text/javascript" src="javascripts/shortcuts.js"></script>
             <script type="text/javascript" src="javascripts/script.js"></script>
@@ -22,7 +24,8 @@
             <!-- SEE ON SCRIPTI JA PHONEGAPI VAHEL -->
             <script>
                 head.js("javascripts/socket.io.js");
-                var socket = io.connect('http://meie.tallinn.ee:3001');
+                //var socket = io.connect('http://meie.tallinn.ee:3001');
+                var socket = io.connect('http://127.0.0.1:3001');
             </script>
             <audio id="ping1" preload="auto" src="sounds/ping.mp3"></audio>
             
@@ -33,7 +36,8 @@
 <strong>m</strong> - meme - create a meme. <br />
 </p></div><div class="message hidden"><img src="images/be.png" class="avatar"><div class="time"></div><p class="name"> <strong>Server</strong></p><p>Buongiorno!<br /></p></div><div id="jetzt" class="message hidden"><img src="images/drm.jpg" class="avatar"><form id="send" method="post" action="/"><input id="input" type="text" autocomplete="off" name="title"></form></div></div>
     <script>
-        head.js("javascripts/jquery-1.10.0.min.js", "javascripts/meme.js", "javascripts/shortcuts.js", "javascripts/script.js", "javascripts/jquery.form.js", "javascripts/phonegapStuff.js", "./javascripts/require.js");
+        //head.js("javascripts/jquery-1.10.0.min.js", "javascripts/meme.js", "javascripts/shortcuts.js", "javascripts/script.js", "javascripts/phonegapStuff.js", "javascripts/jquery.form.js");
+        head.js("javascripts/jquery-1.10.0.min.js", "javascripts/meme.js", "javascripts/shortcuts.js", "javascripts/script.js", "javascripts/phonegapStuff.js");
     </script>
 
 </body></html>

@@ -31,7 +31,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 //app.use(require('stylus').middleware(__dirname + '/public'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/www')));
 
 // development only
 if ('development' == app.get('env')) {
@@ -99,9 +99,10 @@ app.get('/', function(req, res){
 */
 
 app.get('/', function(req, res){
-    res.writeHead(200, {"Content-Type": "text/html"});
-    res.end("Hello, yes, this is server!\n<br /> Please go to <a href='www/index.html'>talker</a>.");
-    res.render('index.html');
+    //res.writeHead(200, {"Content-Type": "text/html"});
+    //res.end("Hello, yes, this is server!\n<br /> Please go to <a href='www/index.html'>talker</a>.");
+    //res.render('index.html');
+    res.sendfile(__dirname + '/public/www/index.html');    
 });
 
 
