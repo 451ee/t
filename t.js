@@ -75,15 +75,18 @@ io.sockets.on('connection', function (socket) {
         socket.emit('who', usernames);
     });
 
+    
     socket.on('help', function () { 
         socket.emit('help');
     });
 
     
-    socket.on('adduser', function(data){ 
+    socket.on('adduser', function(data){
         socket.username = data.username; // store the username in the socket session for this client
         usernames[data.username] = data.username; // add the client's username to the global list
-        //socket.emit('news', { message: 'you are connected', name: 'Server', time: data.time}); // echo to client they've connected
+        socket.emit('help');
+        socket.emit('news', { message: 'Buongiorno! You are connected', name: 'Server', time: data.time}); // echo to client they've connected
+        socket.emit('who', usernames);
         socket.broadcast.emit('news', { message: '<strong>'+data.username + '</strong> has connected', name: 'Server', time: data.time}); // echo to room  that a person has connected 
     });
     /*

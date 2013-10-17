@@ -1,7 +1,4 @@
 
-// This here is shit.
-// to be continued
-
 var shortcuts = Array();
 
 shortcuts = {
@@ -56,7 +53,7 @@ shortcuts = {
 }
 
 
-
+/*
 function shortCuts(data) { 
     //console.log(data.channel);
     
@@ -78,7 +75,7 @@ function shortCuts(data) {
     
     
     //return data;
-}
+}*/
 
 
 
@@ -107,11 +104,12 @@ function findPatterns(message) {
 */
 
 
-
+/*
 function findShortcut(data) { 
     //console.log(data.message);
     return data;
 }
+*/
 
 /*
 function findShortcut(data) { 
