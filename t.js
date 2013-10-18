@@ -104,6 +104,7 @@ io.sockets.on('connection', function (socket) {
         socket.emit('help');
         socket.emit('news', { message: 'Buongiorno! You are connected', name: 'Server', time: data.time}); // echo to client they've connected
         socket.emit('who', usernames);
+        socket.emit('getUp');
         if(conf.db.usesDb === true) {
             articleProvider.findLast( function(error,docs){
                 socket.emit('last', docs);

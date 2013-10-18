@@ -20,8 +20,9 @@ $(document).ready(function() {
 		name = String(username); //cl (username);
 				
 		if (username) { 
-			$('.message').show();
-			$("#input").focus();	
+            $("#pleaseWait").show();
+			//$('#jetzt').show();
+			//$("#input").focus();	
 			$('#message1').hide();
             socket.emit('adduser', { username: username, time: getTime() });
             //pastMemes();
@@ -86,6 +87,11 @@ $(document).ready(function() {
 
     
     /* PROCESS SERVER RESPONSES */
+    socket.on('getUp', function () { 
+        $('#jetzt').show();
+        $("#input").focus();	
+    });
+
     socket.on('paint', function (data) { 
         paint(data);
     });
